@@ -27,14 +27,15 @@ import { site } from '../lib/site';
       alt=""
       loading="eager"
       fetchpriority="high"
-      minHeight="100svh"
+      minHeight="calc(100svh - 73px)"
       fullBleed
       class="hero-image"
     >
       <div class="wrap hero-inner">
         <MegaHeading
           as="h1"
-          size="xl"
+          size="lg"
+          class="hero-heading"
           lines={['Gear that gets', 'packed away', 'properly']}
         />
         <p class="lede">
@@ -220,7 +221,18 @@ import { site } from '../lib/site';
 
 <style>
   /* 01 — Hero */
-  .hero-inner { max-width: 760px; }
+  .hero-inner { max-width: 1040px; }
+  /* :global — MegaHeading's font-size lives on the child component's own
+     element, which this page's scoped styles can't reach without it.
+     !important is needed because MegaHeading's own scoped `.mega-lg` rule
+     resolves to the same specificity tier (two classes vs. one class plus
+     Astro's scope attribute) — a plain override would silently lose the
+     cascade tie. Sized so all three lines plus the lede/CTAs fit within one
+     viewport below the ~73px header (see minHeight calc on the hero
+     ImageSlot above). */
+  :global(.hero-heading) {
+    font-size: clamp(52px, 6.8vw, 108px) !important;
+  }
   .lede {
     margin-top: var(--space-3);
     font-size: 19px;
@@ -234,7 +246,7 @@ import { site } from '../lib/site';
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
   }
 
   /* 02 — Brand statement */
