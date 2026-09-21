@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import MegaHeading from '../../components/MegaHeading.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
 import { site } from '../../lib/site';
 
 const entries = (await getCollection('field-notes')).sort(
@@ -23,10 +24,24 @@ const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', mon
     { name: 'Field Notes' },
   ]} />
 
+  <ImageSlot
+    slotName="LIFESTYLE-SWAG-PACKUP"
+    basePath="/img/lifestyle-swag-packup"
+    width={1376}
+    height={768}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="field-notes-hero"
+  >
+    <div class="wrap">
+      <SectionLabel label="FIELD NOTES" index="00" light />
+      <MegaHeading as="h1" size="lg" lines={['Field', 'Notes']} />
+    </div>
+  </ImageSlot>
+
   <section class="section-black field-notes-intro">
     <div class="wrap">
-      <SectionLabel label="FIELD NOTES" index="00" />
-      <h1>Field Notes</h1>
       <p class="prose intro">
         Practical writing on gear storage, based on what actually fails. No
         listicles, no affiliate roundups.
@@ -90,7 +105,7 @@ const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', mon
 
 <style>
   .field-notes-intro { padding-block: var(--space-6) var(--space-4); }
-  .intro { margin-top: var(--space-3); font-size: 18px; color: var(--bone-muted); }
+  .intro { font-size: 18px; color: var(--bone-muted); }
 
   .featured-article {
     display: block;

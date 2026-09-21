@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
 import ProductSystem from '../../components/ProductSystem.astro';
 import { site } from '../../lib/site';
 ---
@@ -15,10 +17,24 @@ import { site } from '../../lib/site';
     { name: 'Gear' },
   ]} />
 
+  <ImageSlot
+    slotName="HERO-4WD-DUST-DUSK"
+    basePath="/img/hero-4wd-camp-dusk"
+    width={1376}
+    height={768}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="gear-hero"
+  >
+    <div class="wrap">
+      <SectionLabel label="SYSTEM" index="00" light />
+      <MegaHeading as="h1" size="lg" lines={['Gear']} />
+    </div>
+  </ImageSlot>
+
   <section class="section-black gear-intro">
     <div class="wrap">
-      <SectionLabel label="SYSTEM" index="00" />
-      <h1>Gear</h1>
       <p class="prose lede">
         Three categories, one fabric, one reason for each design decision. Every
         bag in the range is built around a documented failure in the gear it
@@ -72,7 +88,6 @@ import { site } from '../../lib/site';
 <style>
   .gear-intro { padding-block: var(--space-6) var(--space-4); }
   .lede {
-    margin-top: var(--space-3);
     font-size: 18px;
     color: var(--bone-muted);
   }

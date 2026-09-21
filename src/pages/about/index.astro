@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import MegaHeading from '../../components/MegaHeading.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -15,10 +16,24 @@ import { site } from '../../lib/site';
     { name: 'About' },
   ]} />
 
-  <section class="section-black about-hero">
+  <ImageSlot
+    slotName="LIFESTYLE-DUMP-TRACK"
+    basePath="/img/dump-feature-spare"
+    width={1376}
+    height={768}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="about-hero"
+  >
     <div class="wrap">
-      <SectionLabel label="BRAND" index="00" />
-      <MegaHeading as="h1" size="md" lines={['About', 'Hard Routine']} />
+      <SectionLabel label="BRAND" index="00" light />
+      <MegaHeading as="h1" size="lg" lines={['About', 'Hard Routine']} />
+    </div>
+  </ImageSlot>
+
+  <section class="section-black about-lede">
+    <div class="wrap">
       <p class="prose lede">
         <strong>Hard Routine is an Australian brand making blackout storage
         and gear bags for 4WD touring and camping.</strong> We're based in
@@ -106,8 +121,8 @@ import { site } from '../../lib/site';
 </BaseLayout>
 
 <style>
-  .about-hero { padding-block: var(--space-6); }
-  .lede { margin-top: var(--space-4); max-width: 60ch; font-size: 19px; color: var(--bone-muted); }
+  .about-lede { padding-block: var(--space-6) var(--space-4); }
+  .lede { max-width: 60ch; font-size: 19px; color: var(--bone-muted); }
   .about-body h2 { margin-top: var(--space-6); }
 
   .not-prose { max-width: none; }
