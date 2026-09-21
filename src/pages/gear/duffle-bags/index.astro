@@ -4,6 +4,9 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductCard from '../../../components/ProductCard.astro';
 import RegisterForm from '../../../components/RegisterForm.astro';
 import Schema from '../../../components/Schema.astro';
+import SectionLabel from '../../../components/SectionLabel.astro';
+import MegaHeading from '../../../components/MegaHeading.astro';
+import ImageSlot from '../../../components/ImageSlot.astro';
 import { site } from '../../../lib/site';
 import { getProductsByCategory } from '../../../lib/products';
 import { itemListSchema } from '../../../lib/schema';
@@ -25,74 +28,92 @@ const productsInCategory = getProductsByCategory('duffle-bags');
     url: `${site.url}${p.categoryPath}${p.slug}/`,
   })))} />
 
-  <section class="wrap section">
-    <div class="prose">
-      <h1>Duffle bags that don't soak up half the campsite</h1>
-      <p>
+  <ImageSlot
+    slotName="LIFESTYLE-HAUL-LOADUP"
+    basePath="/img/haul-feature-loadup"
+    width={1200}
+    height={896}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="category-hero"
+  >
+    <div class="wrap">
+      <SectionLabel label="SYSTEM" index="02" light />
+      <MegaHeading as="h1" size="lg" class="category-heading" lines={['Haul']} />
+      <p class="mono-label category-descriptor">HAUL 40 · HAUL 70 · HAUL 100 — LAUNCHING {site.launchWindow.toUpperCase()}</p>
+    </div>
+  </ImageSlot>
+
+  <section class="section-black">
+    <div class="wrap">
+      <p class="prose lede">
         A touring duffle in 500D PU-coated nylon oxford. Water resistant, lighter
         than canvas, and it won't mildew if you throw it in the ute damp.
       </p>
-      <p class="mono-label size-line">HAUL 40 · HAUL 70 · HAUL 100 — launching {site.launchWindow}</p>
     </div>
 
-    <div class="prose section-block">
-      <h2>Why not canvas?</h2>
-      <p>
-        Cotton canvas is the Australian default and it has real strengths —
-        it's tough, it breathes, and it ages well. But for a bag that lives
-        in a vehicle it has three problems:
-      </p>
-      <p>
-        <strong>It absorbs water.</strong> A wet canvas duffle can gain
-        several kilos and takes days to dry. Coated nylon sheds water and
-        dries in minutes.
-      </p>
-      <p>
-        <strong>It mildews.</strong> Cotton is organic, so mould eats it.
-        Nylon is not, so mould has nothing to feed on. If you pack damp gear
-        — and everyone does — this matters.
-      </p>
-      <p>
-        <strong>It's heavy before you start.</strong> A 70-litre canvas
-        duffle can weigh over 2 kg empty. Ours is 1.1 kg.
-      </p>
-      <p>
-        Canvas is the better choice for a swag you sleep in, where
-        breathability against your body actually matters. For a bag you
-        throw in a tub, coated nylon wins on every axis that counts.
-      </p>
+    <div class="wrap problem-statement">
+      <h2 class="problem-heading">Why not canvas?</h2>
+      <div class="problem-copy">
+        <p>
+          Cotton canvas is the Australian default and it has real strengths —
+          it's tough, it breathes, and it ages well. But for a bag that lives
+          in a vehicle it has three problems:
+        </p>
+        <p>
+          <strong>It absorbs water.</strong> A wet canvas duffle can gain
+          several kilos and takes days to dry. Coated nylon sheds water and
+          dries in minutes.
+        </p>
+        <p>
+          <strong>It mildews.</strong> Cotton is organic, so mould eats it.
+          Nylon is not, so mould has nothing to feed on. If you pack damp gear
+          — and everyone does — this matters.
+        </p>
+        <p>
+          <strong>It's heavy before you start.</strong> A 70-litre canvas
+          duffle can weigh over 2 kg empty. Ours is 1.1 kg.
+        </p>
+        <p>
+          Canvas is the better choice for a swag you sleep in, where
+          breathability against your body actually matters. For a bag you
+          throw in a tub, coated nylon wins on every axis that counts.
+        </p>
+      </div>
     </div>
 
-    <div class="prose section-block">
+    <div class="wrap section-block">
+      <SectionLabel label="FIELD" index="02" />
       <h2>What size duffle bag do I need?</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Duffle sizing table">
+        <table>
+          <thead>
+            <tr><th scope="col">Capacity</th><th scope="col">Suits</th><th scope="col">Typical use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>HAUL 40</td><td>1 person, 2–3 nights</td><td>Weekend away, carry-on sized</td></tr>
+            <tr><td>HAUL 70</td><td>1 person, a week · 2 people, a weekend</td><td>The one most people want</td></tr>
+            <tr><td>HAUL 100</td><td>2 people, a week · bulky bedding</td><td>Extended touring, shared gear</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="prose">
+        If you're buying one, buy the 70. It's the size that fits a week's
+        clothing and still goes in the overhead locker of a light aircraft
+        charter.
+      </p>
     </div>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Duffle sizing table">
-      <table>
-        <thead>
-          <tr><th scope="col">Capacity</th><th scope="col">Suits</th><th scope="col">Typical use</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>HAUL 40</td><td>1 person, 2–3 nights</td><td>Weekend away, carry-on sized</td></tr>
-          <tr><td>HAUL 70</td><td>1 person, a week · 2 people, a weekend</td><td>The one most people want</td></tr>
-          <tr><td>HAUL 100</td><td>2 people, a week · bulky bedding</td><td>Extended touring, shared gear</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="prose">
-      If you're buying one, buy the 70. It's the size that fits a week's
-      clothing and still goes in the overhead locker of a light aircraft
-      charter.
-    </p>
 
-    <div class="prose section-block">
+    <div class="wrap section-block">
       <h2>Is a waterproof duffle bag actually waterproof?</h2>
-      <p>
+      <p class="prose">
         Ours is <strong>water resistant, not submersible</strong>, and we'd
         rather say so than let you find out. The fabric is PU-coated and
         sheds rain indefinitely. The seams are stitched, not welded, so
         water will eventually find them under sustained pressure.
       </p>
-      <p>
+      <p class="prose">
         In practice: rain on a roof rack, spray on a tray, a creek crossing
         splash — fine. Sitting in a puddle for an hour, or actual submersion
         — not fine. If you need genuinely dry storage for electronics, use a
@@ -100,36 +121,41 @@ const productsInCategory = getProductsByCategory('duffle-bags');
       </p>
     </div>
 
-    <div class="prose section-block">
+    <div class="wrap section-block">
+      <SectionLabel label="MATERIAL" index="03" />
       <h2>Specification</h2>
-    </div>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
-      <table>
-        <thead>
-          <tr><th scope="col"><span class="visually-hidden">Spec</span></th><th scope="col">HAUL 40</th><th scope="col">HAUL 70</th><th scope="col">HAUL 100</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Capacity</th><td>40 L</td><td>70 L</td><td>100 L</td></tr>
-          <tr><th scope="row">Dimensions</th><td>500 × 300 × 270 mm</td><td>650 × 350 × 310 mm</td><td>750 × 400 × 335 mm</td></tr>
-          <tr><th scope="row">Empty weight</th><td>0.8 kg</td><td>1.1 kg</td><td>1.4 kg</td></tr>
-          <tr><th scope="row">Fabric</th><td colspan="3">500D PU-coated nylon oxford</td></tr>
-          <tr><th scope="row">Base</th><td colspan="3">Double-layer, welded</td></tr>
-          <tr><th scope="row">Zip</th><td colspan="3">YKK #10 VISLON, two-way, storm-flapped</td></tr>
-          <tr><th scope="row">Carry</th><td colspan="3">Grab handles + removable shoulder strap</td></tr>
-          <tr><th scope="row">Interior</th><td colspan="3">Bone lining — you can see what's in it</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="product-grid section-block">
-      {productsInCategory.map((p) => <ProductCard product={p} />)}
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
+        <table>
+          <thead>
+            <tr><th scope="col"><span class="visually-hidden">Spec</span></th><th scope="col">HAUL 40</th><th scope="col">HAUL 70</th><th scope="col">HAUL 100</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Capacity</th><td>40 L</td><td>70 L</td><td>100 L</td></tr>
+            <tr><th scope="row">Dimensions</th><td>500 × 300 × 270 mm</td><td>650 × 350 × 310 mm</td><td>750 × 400 × 335 mm</td></tr>
+            <tr><th scope="row">Empty weight</th><td>0.8 kg</td><td>1.1 kg</td><td>1.4 kg</td></tr>
+            <tr><th scope="row">Fabric</th><td colspan="3">500D PU-coated nylon oxford</td></tr>
+            <tr><th scope="row">Base</th><td colspan="3">Double-layer, welded</td></tr>
+            <tr><th scope="row">Zip</th><td colspan="3">YKK #10 VISLON, two-way, storm-flapped</td></tr>
+            <tr><th scope="row">Carry</th><td colspan="3">Grab handles + removable shoulder strap</td></tr>
+            <tr><th scope="row">Interior</th><td colspan="3">Bone lining — you can see what's in it</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="section-block">
+    <div class="wrap section-block">
+      <SectionLabel label="SYSTEM" index="04" />
+      <h2>The range</h2>
+      <div class="product-grid">
+        {productsInCategory.map((p) => <ProductCard product={p} />)}
+      </div>
+    </div>
+
+    <div class="wrap section-block">
       <RegisterForm />
     </div>
 
-    <div class="prose section-block related">
+    <div class="wrap section-block related">
       <h2>Related reading</h2>
       <ul>
         <li><a href="/field-notes/canvas-vs-nylon/">Canvas or nylon: which is actually better for touring gear?</a></li>
@@ -140,15 +166,46 @@ const productsInCategory = getProductsByCategory('duffle-bags');
 </BaseLayout>
 
 <style>
-  .section-block { margin-top: var(--space-5); }
-  .size-line { margin-top: var(--space-2); }
+  .category-heading { margin-top: var(--space-2); }
+  .category-descriptor { margin-top: var(--space-2); color: var(--bone); }
+
+  .lede {
+    padding-top: var(--space-6);
+    font-size: 19px;
+    color: var(--bone-muted);
+  }
+
+  .problem-statement { margin-top: var(--space-5); }
+  .problem-heading {
+    font-size: clamp(30px, 4.2vw, 56px);
+    max-width: 16ch;
+  }
+  .problem-copy { margin-top: var(--space-3); }
+  .problem-copy p + p { margin-top: var(--space-2); }
+  @media (min-width: 860px) {
+    .problem-statement {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--space-4);
+    }
+    .problem-heading { grid-column: 1 / 8; }
+    .problem-copy { grid-column: 9 / 13; margin-top: 0; }
+  }
+
+  .section-block { margin-top: var(--space-6); }
+  .section-block h2 { margin-top: var(--space-2); }
+  .section-block .prose { margin-top: var(--space-2); }
+  .section-block .table-wrap { margin-top: var(--space-3); }
+
   .product-grid {
+    margin-top: var(--space-3);
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
   }
   @media (min-width: 720px) {
     .product-grid { grid-template-columns: repeat(3, 1fr); }
   }
+
   .related ul { padding-left: 1.2em; margin-top: var(--space-1); }
   .related li { margin-top: 0.4em; }
 </style>

@@ -6,6 +6,9 @@ import NomenclaturePlate from '../../../components/NomenclaturePlate.astro';
 import RegisterForm from '../../../components/RegisterForm.astro';
 import ProductCard from '../../../components/ProductCard.astro';
 import Schema from '../../../components/Schema.astro';
+import SectionLabel from '../../../components/SectionLabel.astro';
+import MegaHeading from '../../../components/MegaHeading.astro';
+import ImageSlot from '../../../components/ImageSlot.astro';
 import ResponsiveImage from '../../../components/ResponsiveImage.astro';
 import { site } from '../../../lib/site';
 import {
@@ -27,6 +30,19 @@ const { product } = Astro.props;
 const path = `${product.categoryPath}${product.slug}/`;
 const siblings = getProductsByCategory(product.category).filter((p) => p.slug !== product.slug);
 const relatedReading = relatedReadingByCategory[product.category];
+
+const lifestyleImageByLine: Record<string, string> = {
+  ROLL: '/img/roll-feature-loadup',
+  HAUL: '/img/haul-feature-loadup',
+  DUMP: '/img/dump-feature-spare',
+};
+const lifestyleStatementByLine: Record<string, string[]> = {
+  ROLL: ['Built for the', 'real pack-up.'],
+  HAUL: ['Loaded once.', "Doesn't leak."],
+  DUMP: ['Keep it out.', 'Keep it dry.'],
+};
+const lifestyleImage = lifestyleImageByLine[product.line];
+const lifestyleStatement = lifestyleStatementByLine[product.line];
 ---
 <BaseLayout
   title={product.title}
@@ -42,50 +58,84 @@ const relatedReading = relatedReadingByCategory[product.category];
   ]} />
   <Schema schema={productSchema(product, path)} />
 
-  <article class="wrap section product-page">
-    <h1>{product.h1}</h1>
-    <AvailabilityNotice />
-    <p class="prose intro">{product.intro}</p>
-
-    <div class="product-hero-image">
-      <ResponsiveImage
-        basePath={`/img/${product.slug}-16x9`}
-        width={1200}
-        height={675}
-        alt={`${product.name} in ${product.color.toLowerCase()} ${product.material}`}
-        loading="eager"
-        fetchpriority="high"
-      />
+  <section class="section-black product-hero">
+    <div class="wrap product-hero-grid">
+      <div class="product-hero-image">
+        <ResponsiveImage
+          basePath={`/img/${product.slug}-4x3`}
+          width={1200}
+          height={900}
+          alt={`${product.name} in ${product.color.toLowerCase()} ${product.material}`}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="product-hero-body">
+        <SectionLabel label={categoryLabels[product.category].toUpperCase()} index={product.size} />
+        <MegaHeading as="h1" size="md" lines={[`${product.line} ${product.size}`]} />
+        <AvailabilityNotice />
+        <p class="prose intro">{product.intro}</p>
+        <a href="#register" class="btn btn-primary">Register interest →</a>
+      </div>
     </div>
+  </section>
 
+  <div class="wrap">
     <NomenclaturePlate product={product} />
+  </div>
 
+  <article class="wrap section product-page">
     <div class="prose section-block">
       <h2>What it's for</h2>
       <p>{product.whatFor}</p>
     </div>
 
-    <div class="prose section-block">
+    <div class="section-block">
+      <SectionLabel label="MATERIAL" index="01" />
       <h2>Specification</h2>
-    </div>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
-      <table>
-        <tbody>
-          {product.specs.map((s) => (
-            <tr><th scope="row">{s.label}</th><td>{s.value}</td></tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="prose section-block">
-      <h2>What's different about it</h2>
-      <ul>
-        {product.whatsDifferent.map((point) => <li>{point}</li>)}
-      </ul>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
+        <table>
+          <tbody>
+            {product.specs.map((s) => (
+              <tr><th scope="row">{s.label}</th><td>{s.value}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="section-block">
+      <h2>What's different about it</h2>
+      <ol class="different-list">
+        {product.whatsDifferent.map((point, i) => (
+          <li>
+            <span class="mono-label different-index">{String(i + 1).padStart(2, '0')}</span>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </article>
+
+  {lifestyleImage && (
+    <ImageSlot
+      slotName={`LIFESTYLE-${product.line}-DETAIL`}
+      basePath={lifestyleImage}
+      width={1200}
+      height={896}
+      alt=""
+      minHeight="60svh"
+      fullBleed
+      class="product-lifestyle"
+    >
+      <div class="wrap">
+        <MegaHeading as="h2" size="md" lines={lifestyleStatement} />
+      </div>
+    </ImageSlot>
+  )}
+
+  <article class="wrap section product-page">
+    <div class="section-block" id="register">
       <RegisterForm heading={`Register interest in the ${product.line} ${product.size}`} />
     </div>
 
@@ -109,22 +159,50 @@ const relatedReading = relatedReadingByCategory[product.category];
 </BaseLayout>
 
 <style>
-  .product-page { max-width: 900px; }
-  .intro { margin-top: var(--space-2); font-size: 19px; }
-  .product-hero-image {
-    margin-top: var(--space-3);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
+  .product-hero { padding-block: var(--space-6); }
+  .product-hero-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 860px) {
+    .product-hero-grid {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: var(--space-5);
+    }
   }
   .product-hero-image img { width: 100%; height: auto; display: block; }
-  .section-block { margin-top: var(--space-5); }
-  .section-block ul { padding-left: 1.2em; }
-  .section-block li { margin-top: 0.4em; }
+  .product-hero-body :global(.mega-heading) { margin-top: var(--space-2); }
+  .product-hero-body .intro { margin-top: var(--space-3); font-size: 18px; color: var(--bone-muted); }
+  .product-hero-body .availability-notice { margin-top: var(--space-3); }
+  .product-hero-body .btn { margin-top: var(--space-3); }
+
+  .product-page { max-width: 1000px; }
+  .section-block { margin-top: var(--space-6); }
+  .section-block h2 { margin-top: var(--space-2); }
+  .section-block .prose p { margin-top: var(--space-2); }
+
+  .different-list {
+    margin-top: var(--space-3);
+    list-style: none;
+    padding: 0;
+  }
+  .different-list li {
+    display: flex;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    border-top: 1px solid var(--line);
+    max-width: var(--prose-max);
+  }
+  .different-list li:last-child { border-bottom: 1px solid var(--line); }
+  .different-index { color: var(--brass); flex-shrink: 0; }
+
+  .product-lifestyle :global(.mega-heading) { color: var(--bone); }
+
   .related-grid { display: grid; gap: var(--space-4); }
   .sibling-grid {
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
     margin-top: var(--space-2);
   }
   @media (min-width: 560px) {

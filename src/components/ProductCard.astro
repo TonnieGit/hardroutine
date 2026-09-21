@@ -1,4 +1,7 @@
 ---
+// Equipment record, not an ecommerce card — see hard-routine-design-brief.md
+// §24. No bordered box, no rounded container: an image, a thin rule, then
+// the line/size, SKU and key specs set as technical documentation.
 import type { Product } from '../lib/products';
 import ResponsiveImage from './ResponsiveImage.astro';
 
@@ -10,8 +13,8 @@ const href = `${product.categoryPath}${product.slug}/`;
 const capacity = product.specs.find((s) => s.label === 'Capacity')?.value;
 const weight = product.specs.find((s) => s.label === 'Empty weight')?.value;
 ---
-<article class="product-card">
-  <a href={href} class="product-card-image" tabindex="-1" aria-hidden="true">
+<article class="product-record">
+  <a href={href} class="product-record-image" tabindex="-1" aria-hidden="true">
     <ResponsiveImage
       basePath={`/img/${product.slug}-4x3`}
       width={800}
@@ -20,45 +23,44 @@ const weight = product.specs.find((s) => s.label === 'Empty weight')?.value;
       loading="lazy"
     />
   </a>
-  <div class="product-card-body">
-    <p class="mono-label">{product.sku}</p>
+  <div class="product-record-body">
+    <p class="mono-label product-record-sku">{product.sku}</p>
     <h3><a href={href}>{product.line} {product.size}</a></h3>
-    <dl class="product-card-specs">
-      {capacity && (
-        <div><dt>Capacity</dt><dd>{capacity}</dd></div>
-      )}
-      {weight && (
-        <div><dt>Weight</dt><dd>{weight}</dd></div>
-      )}
-    </dl>
-    <a href={href} class="btn btn-ghost product-card-link">View {product.line} {product.size} →</a>
+    <p class="mono-label product-record-specs">
+      {[capacity, weight].filter(Boolean).join(' · ')}
+    </p>
+    <a href={href} class="product-record-link">Explore {product.line} {product.size} →</a>
   </div>
 </article>
 
 <style>
-  .product-card {
-    background: var(--char);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
+  .product-record-image { display: block; line-height: 0; }
+  .product-record-image img { width: 100%; height: auto; }
+  .product-record-body {
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
   }
-  .product-card-image { display: block; line-height: 0; }
-  .product-card-image img { width: 100%; height: auto; }
-  .product-card-body { padding: var(--space-3); }
-  .product-card h3 { margin-top: 0.3em; font-size: 22px; }
-  .product-card h3 a { color: var(--bone); text-decoration: none; }
-  .product-card h3 a:hover { color: var(--brass); }
-  .product-card-specs {
-    display: flex;
-    gap: var(--space-3);
+  .product-record-sku { color: var(--brass); }
+  .product-record h3 {
+    margin-top: 0.4em;
+    font-size: clamp(24px, 2.6vw, 30px);
+  }
+  .product-record h3 a { color: var(--bone); text-decoration: none; }
+  .product-record h3 a:hover { color: var(--brass); }
+  .product-record-specs {
+    margin-top: 0.5em;
+    color: var(--lichen);
+  }
+  .product-record-link {
+    display: inline-block;
     margin-top: var(--space-2);
     font-family: var(--font-mono);
     font-size: var(--size-small);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bone);
+    text-decoration: none;
   }
-  .product-card-specs dt { color: var(--lichen); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
-  .product-card-specs dd { color: var(--bone); margin-top: 0.2em; }
-  .product-card-link {
-    margin-top: var(--space-3);
-    width: 100%;
-  }
+  .product-record-link:hover { color: var(--brass); }
 </style>

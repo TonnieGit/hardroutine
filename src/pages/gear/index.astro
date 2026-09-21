@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import ProductSystem from '../../components/ProductSystem.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -13,55 +15,66 @@ import { site } from '../../lib/site';
     { name: 'Gear' },
   ]} />
 
-  <section class="wrap section">
-    <h1>Gear</h1>
-    <p class="prose">
-      Three categories, one fabric, one reason for each design decision. Every
-      bag in the range is built around a documented failure in the gear it
-      replaces — see <a href="/the-fabric/">The Fabric</a> for the material,
-      or <a href="/about/">About</a> for how we got here.
-    </p>
-
-    <div class="hub-grid">
-      <article class="card hub-card">
-        <p class="mono-label">ROLL</p>
-        <h2>Swag bags</h2>
-        <p>
-          Oversized, vented swag transit bags in three sizes. Cut for a wet
-          swag rolled badly, not a dry one rolled well.
-        </p>
-        <a href="/gear/swag-bags/" class="btn btn-ghost">Swag bags →</a>
-      </article>
-      <article class="card hub-card">
-        <p class="mono-label">HAUL</p>
-        <h2>Duffle bags</h2>
-        <p>
-          Touring duffles in coated technical nylon. Lighter than canvas,
-          water resistant, won't mildew.
-        </p>
-        <a href="/gear/duffle-bags/" class="btn btn-ghost">Duffle bags →</a>
-      </article>
-      <article class="card hub-card">
-        <p class="mono-label">DUMP</p>
-        <h2>Rear wheel bags</h2>
-        <p>
-          Welded-liner spare wheel bags for the gear you don't want inside the
-          vehicle. Real drainage, webbing that holds.
-        </p>
-        <a href="/gear/rear-wheel-bags/" class="btn btn-ghost">Rear wheel bags →</a>
-      </article>
+  <section class="section-black gear-intro">
+    <div class="wrap">
+      <SectionLabel label="SYSTEM" index="00" />
+      <h1>Gear</h1>
+      <p class="prose lede">
+        Three categories, one fabric, one reason for each design decision. Every
+        bag in the range is built around a documented failure in the gear it
+        replaces — see <a href="/the-fabric/">The Fabric</a> for the material,
+        or <a href="/about/">About</a> for how we got here.
+      </p>
+      <h2>Three things, done properly</h2>
     </div>
   </section>
+
+  <div class="wrap">
+    <ProductSystem
+      line="ROLL"
+      index="01"
+      descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
+      href="/gear/swag-bags/"
+      linkLabel="Swag bags →"
+      imageBasePath="/img/roll-feature-loadup"
+      variant="image-left"
+    >
+      Oversized, vented swag transit bags in three sizes. Cut for a wet swag
+      rolled badly, not a dry one rolled well.
+    </ProductSystem>
+    <ProductSystem
+      line="HAUL"
+      index="02"
+      descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
+      href="/gear/duffle-bags/"
+      linkLabel="Duffle bags →"
+      imageBasePath="/img/haul-feature-loadup"
+      variant="image-right"
+    >
+      Touring duffles in coated technical nylon. Lighter than canvas, water
+      resistant, won't mildew.
+    </ProductSystem>
+    <ProductSystem
+      line="DUMP"
+      index="03"
+      descriptor="REAR WHEEL BAGS / 60 · 90 L"
+      href="/gear/rear-wheel-bags/"
+      linkLabel="Rear wheel bags →"
+      imageBasePath="/img/dump-feature-spare"
+      variant="image-left"
+    >
+      Welded-liner spare wheel bags for the gear you don't want inside the
+      vehicle. Real drainage, webbing that holds.
+    </ProductSystem>
+  </div>
 </BaseLayout>
 
 <style>
-  .hub-grid {
-    display: grid;
-    gap: var(--space-3);
-    margin-top: var(--space-4);
+  .gear-intro { padding-block: var(--space-6) var(--space-4); }
+  .lede {
+    margin-top: var(--space-3);
+    font-size: 18px;
+    color: var(--bone-muted);
   }
-  @media (min-width: 720px) {
-    .hub-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  .hub-card p:not(.mono-label) { margin-top: var(--space-1); margin-bottom: var(--space-2); }
+  .gear-intro h2 { margin-top: var(--space-6); }
 </style>
