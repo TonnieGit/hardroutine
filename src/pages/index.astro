@@ -273,6 +273,11 @@ import { site } from '../lib/site';
 
 <style>
   /* 01 — Hero */
+  /* base.css sets `section, .section { padding-block: var(--space-5) }`
+     globally — without this override that padding lands between the
+     section's top edge and the ImageSlot inside it, leaving a black band
+     above the hero image (independent of the header's own position). */
+  .hero { padding-block: 0; }
   .hero-inner { max-width: 1300px; }
   /* :global — MegaHeading's font-size lives on the child component's own
      element, which this page's scoped styles can't reach without it.
