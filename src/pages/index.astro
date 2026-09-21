@@ -27,7 +27,7 @@ import { site } from '../lib/site';
       alt=""
       loading="eager"
       fetchpriority="high"
-      minHeight="calc(100svh - 73px)"
+      minHeight="100svh"
       fullBleed
       class="hero-image"
     >
@@ -52,46 +52,52 @@ import { site } from '../lib/site';
     </ImageSlot>
   </section>
 
-  <!-- 02 — BRAND STATEMENT / THE PROBLEM (black, no cards) -->
+  <!-- 02 — BRAND STATEMENT / THE PROBLEM (black, asymmetric editorial) -->
   <section class="section-black problem">
-    <div class="wrap prose">
+    <div class="wrap">
       <SectionLabel label="FIELD" index="01" />
-      <h2>The bag that came with it is the part that fails first</h2>
-      <p>
-        Ask anyone who's owned a swag or an awning for more than two seasons. The
-        canvas outlasts the bag it came in. The bag is cut too tight to get the
-        swag back into wet, it tears at the corners, the zip jams with dust, and
-        when it leaks the thing inside goes mouldy.
-      </p>
-      <p>
-        We went and read fifteen years of Australian forum threads and several
-        hundred product reviews before we drew a single pattern. Three failures
-        came up over and over:
-      </p>
+      <div class="problem-statement">
+        <h2 class="problem-heading">The bag that came with it is the part that fails first</h2>
+        <div class="problem-copy">
+          <p>
+            Ask anyone who's owned a swag or an awning for more than two seasons. The
+            canvas outlasts the bag it came in. The bag is cut too tight to get the
+            swag back into wet, it tears at the corners, the zip jams with dust, and
+            when it leaks the thing inside goes mouldy.
+          </p>
+          <p>
+            We went and read fifteen years of Australian forum threads and several
+            hundred product reviews before we drew a single pattern. Three failures
+            came up over and over:
+          </p>
+        </div>
+      </div>
     </div>
     <div class="wrap">
-      <TechnicalCallout index="01" title="Cut too small">
-        <p>
-          The supplied bag fits a factory-rolled swag in a warehouse. It does not
-          fit a wet, sandy, badly-rolled swag at 6am in the rain.
-        </p>
-      </TechnicalCallout>
-      <TechnicalCallout index="02" title="The zip eats the fabric">
-        <p>
-          Fine-gauge zips jam with grit and catch the canvas they're meant to
-          protect. People report torn tents and broken pulls from the same action.
-        </p>
-      </TechnicalCallout>
-      <TechnicalCallout index="03" title="Waterproof means it can't breathe">
-        <p>
-          A damp swag sealed into a PVC bag is a mould incubator. Gear arrives
-          home furry. The industry's answer is a blog post about how to scrub it
-          off.
-        </p>
-      </TechnicalCallout>
+      <div class="problem-technical">
+        <TechnicalCallout index="01" title="Cut too small">
+          <p>
+            The supplied bag fits a factory-rolled swag in a warehouse. It does not
+            fit a wet, sandy, badly-rolled swag at 6am in the rain.
+          </p>
+        </TechnicalCallout>
+        <TechnicalCallout index="02" title="The zip eats the fabric">
+          <p>
+            Fine-gauge zips jam with grit and catch the canvas they're meant to
+            protect. People report torn tents and broken pulls from the same action.
+          </p>
+        </TechnicalCallout>
+        <TechnicalCallout index="03" title="Waterproof means it can't breathe">
+          <p>
+            A damp swag sealed into a PVC bag is a mould incubator. Gear arrives
+            home furry. The industry's answer is a blog post about how to scrub it
+            off.
+          </p>
+        </TechnicalCallout>
+      </div>
     </div>
     <div class="wrap">
-      <p class="prose designed-around">We designed around all three.</p>
+      <p class="designed-around">We designed around all three.</p>
     </div>
   </section>
 
@@ -102,85 +108,131 @@ import { site } from '../lib/site';
     width={1376}
     height={768}
     alt=""
-    ratio="21 / 9"
+    minHeight="85svh"
     fullBleed
     class="lifestyle-break"
   >
     <div class="wrap">
-      <SectionLabel label="FIELD" index="02" />
+      <SectionLabel label="FIELD" index="02" light />
+      <MegaHeading as="h2" size="md" class="lifestyle-heading" lines={['Pack', 'properly.']} />
     </div>
   </ImageSlot>
 
   <!-- 04 — THE RANGE -->
-  <section class="section range">
+  <section class="section-black range">
+    <div class="wrap range-intro">
+      <SectionLabel label="SYSTEM" index="04" />
+      <h2 class="range-heading">Three things, done properly</h2>
+    </div>
+
+    <!-- ROLL — monumental full-bleed -->
+    <ImageSlot
+      slotName="PRODUCT-ROLL-FIELD"
+      basePath="/img/roll-feature-loadup"
+      width={1200}
+      height={896}
+      alt=""
+      minHeight="92svh"
+      fullBleed
+      class="range-roll"
+    >
+      <div class="wrap range-roll-inner">
+        <p class="mono-label range-index">01</p>
+        <MegaHeading as="h3" size="xl" class="range-roll-heading" lines={['Roll']} />
+        <p class="mono-label range-roll-descriptor">SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM</p>
+        <p class="range-roll-copy">
+          Oversized on purpose. Sized for a wet swag rolled badly, not a dry one
+          rolled well. Vented under storm hoods at both ends so damp gear can
+          dry instead of stewing.
+        </p>
+        <a href="/gear/swag-bags/" class="btn btn-ghost">Swag bags →</a>
+      </div>
+    </ImageSlot>
+
+    <!-- HAUL — asymmetric overlap -->
     <div class="wrap">
-      <h2>Three things, done properly</h2>
-
-      <ProductSystem
-        line="ROLL"
-        descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
-        href="/gear/swag-bags/"
-        linkLabel="Swag bags →"
-        imageBasePath="/img/roll-feature-loadup"
-        imageAlt=""
-        imageWidth={1200}
-        imageHeight={896}
-        variant="image-left"
-      >
-        Oversized on purpose. Sized for a wet swag rolled badly, not a dry one
-        rolled well. Vented under storm hoods at both ends so damp gear can
-        dry instead of stewing.
-      </ProductSystem>
-
       <ProductSystem
         line="HAUL"
+        index="02"
         descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
         href="/gear/duffle-bags/"
         linkLabel="Duffle bags →"
         imageBasePath="/img/haul-feature-loadup"
         imageAlt=""
-        imageWidth={1200}
-        imageHeight={896}
-        variant="image-right"
+        variant="image-left"
       >
         A touring duffle in coated technical nylon, not cotton canvas.
         Doesn't hold water, doesn't mildew, doesn't weigh four kilos before
         you put anything in it.
       </ProductSystem>
+    </div>
 
-      <ProductSystem
-        line="DUMP"
-        descriptor="REAR WHEEL BAGS / 60 · 90 L"
-        href="/gear/rear-wheel-bags/"
-        linkLabel="Rear wheel bags →"
-        imageBasePath="/img/dump-feature-spare"
-        imageAlt=""
-        imageWidth={1376}
-        imageHeight={768}
-        variant="image-left"
-      >
-        For everything you don't want inside the vehicle. Wet towels, muddy
-        recovery gear, firewood, rubbish. Welded liner, drains properly,
-        webbing that won't let go on the Birdsville Track.
-      </ProductSystem>
+    <!-- DUMP — technical strip -->
+    <div class="wrap range-dump">
+      <div class="range-dump-grid">
+        <div class="range-dump-text">
+          <p class="mono-label range-index">03</p>
+          <MegaHeading as="h3" size="md" lines={['Dump']} />
+          <p class="mono-label range-dump-descriptor">REAR WHEEL BAGS / 60 · 90 L</p>
+          <p class="range-dump-copy">
+            For everything you don't want inside the vehicle. Wet towels, muddy
+            recovery gear, firewood, rubbish. Welded liner, drains properly,
+            webbing that won't let go on the Birdsville Track.
+          </p>
+          <dl class="range-dump-specs">
+            <div><dt>SHELL</dt><dd>Welded liner</dd></div>
+            <div><dt>DRAINAGE</dt><dd>Drains properly</dd></div>
+            <div><dt>WEBBING</dt><dd>Won't let go on the Birdsville Track</dd></div>
+          </dl>
+          <a href="/gear/rear-wheel-bags/" class="btn btn-ghost">Rear wheel bags →</a>
+        </div>
+        <ImageSlot
+          slotName="PRODUCT-DUMP-STUDIO"
+          basePath="/img/dump-feature-spare"
+          width={1376}
+          height={768}
+          alt=""
+          ratio="4 / 3"
+          class="range-dump-image"
+        />
+      </div>
     </div>
   </section>
 
-  <!-- 05 — THE FABRIC -->
-  <section class="section-black fabric-teaser">
-    <div class="wrap fabric-grid">
-      <ImageSlot
-        slotName="DETAIL-FABRIC-MACRO"
-        basePath="/img/detail-fabric-macro"
-        width={1200}
-        height={896}
-        alt=""
-        ratio="1 / 1"
-        class="fabric-image"
-      />
+  <!-- 05 — MOMENTUM BREAK (black, pure type, no image) -->
+  <section class="section-black momentum-break">
+    <div class="wrap">
+      <SectionLabel label="FIELD" index="03" />
+      <MegaHeading as="h2" size="xl" class="momentum-heading" lines={['Take less.', 'Go further.']} />
+    </div>
+  </section>
+
+  <!-- 06 — THE FABRIC (major visual moment) -->
+  <ImageSlot
+    slotName="DETAIL-FABRIC-MACRO"
+    basePath="/img/detail-fabric-macro"
+    width={1200}
+    height={896}
+    alt=""
+    minHeight="92svh"
+    fullBleed
+    class="fabric-hero"
+  >
+    <div class="wrap">
+      <SectionLabel label="MATERIAL" index="05" light />
+      <MegaHeading as="h2" size="xl" class="fabric-heading" lines={['One fabric', 'across the range']} />
+    </div>
+  </ImageSlot>
+
+  <section class="section-black fabric-detail">
+    <div class="wrap fabric-detail-grid">
+      <dl class="fabric-specs">
+        <div><dt>01 / SHELL</dt><dd>500D PU-coated nylon oxford</dd></div>
+        <div><dt>02 / PRINT</dt><dd>Topographic contour, blackout</dd></div>
+        <div><dt>03 / INTERIOR</dt><dd>Bone lining</dd></div>
+        <div><dt>04 / FINISH</dt><dd>Low-glare, hides red dust</dd></div>
+      </dl>
       <div class="prose fabric-copy">
-        <SectionLabel label="MATERIAL" index="03" />
-        <MegaHeading as="h2" size="md" lines={['One fabric', 'across the range']} />
         <p>
           500D PU-coated nylon oxford in a topographic contour print. Not cotton
           canvas — it's lighter, it doesn't absorb water, it won't mildew if you
@@ -191,23 +243,22 @@ import { site } from '../lib/site';
           going to pretend it's camouflage. It's low-glare, it doesn't show red
           dust, and it looks right against a blacked-out build.
         </p>
-        <p class="mono-label fabric-spec">500D PU-COATED NYLON OXFORD</p>
         <p><a href="/the-fabric/">How we chose it →</a></p>
       </div>
     </div>
   </section>
 
-  <!-- 06 — FINAL LIFESTYLE / CTA -->
+  <!-- 07 — FINAL LIFESTYLE / CTA -->
   <ImageSlot
     slotName="LIFESTYLE-CAMPSITE-DUSK"
     alt=""
-    minHeight="70svh"
+    minHeight="80svh"
     fullBleed
     class="register-image"
   >
     <div class="wrap register-block-inner">
       <div class="prose">
-        <MegaHeading as="h2" size="lg" lines={['Launching', site.launchWindow]} />
+        <MegaHeading as="h2" size="xl" class="register-heading" lines={['Launching', site.launchWindow]} />
         <p>
           Register your interest and you'll hear first. We'll tell you when the
           range is live, what it costs, and when the first run sells out. No
@@ -221,71 +272,194 @@ import { site } from '../lib/site';
 
 <style>
   /* 01 — Hero */
-  .hero-inner { max-width: 1040px; }
+  .hero-inner { max-width: 1300px; }
   /* :global — MegaHeading's font-size lives on the child component's own
      element, which this page's scoped styles can't reach without it.
      !important is needed because MegaHeading's own scoped `.mega-lg` rule
      resolves to the same specificity tier (two classes vs. one class plus
      Astro's scope attribute) — a plain override would silently lose the
-     cascade tie. Sized so all three lines plus the lede/CTAs fit within one
-     viewport below the ~73px header (see minHeight calc on the hero
-     ImageSlot above). */
+     cascade tie. The headline is the primary visual object on the page: it
+     is allowed to push the hero taller than one viewport (see brief §5/§10)
+     rather than being shrunk to fit above the fold. */
   :global(.hero-heading) {
-    font-size: clamp(52px, 6.8vw, 108px) !important;
+    font-size: clamp(58px, 11vw, 176px) !important;
   }
   .lede {
-    margin-top: var(--space-3);
-    font-size: 19px;
-    color: var(--bone);
+    margin-top: var(--space-4);
+    max-width: 34ch;
+    font-size: 16px;
+    color: var(--bone-muted);
   }
   .launch-line {
-    margin-top: var(--space-3);
-    color: var(--brass);
+    margin-top: var(--space-2);
+    color: var(--bone-muted);
   }
   .hero-ctas {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
-    margin-top: var(--space-3);
+    margin-top: var(--space-4);
   }
 
   /* 02 — Brand statement */
-  .problem { padding-block: var(--space-6); }
-  .problem .wrap.prose { margin-bottom: var(--space-4); }
+  .problem { padding-block: var(--space-7); }
+  .problem-statement { margin-top: var(--space-4); }
+  .problem-heading {
+    font-size: clamp(32px, 4.6vw, 68px);
+    max-width: 16ch;
+  }
+  .problem-copy { margin-top: var(--space-3); }
+  .problem-copy p + p { margin-top: var(--space-2); }
+  @media (min-width: 860px) {
+    .problem-statement {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--space-4);
+      align-items: start;
+    }
+    .problem-heading { grid-column: 1 / 8; }
+    .problem-copy { grid-column: 9 / 13; margin-top: 0.3em; }
+  }
+  .problem-technical { margin-top: var(--space-6); }
+  @media (min-width: 860px) {
+    .problem-technical {
+      margin-left: 25%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: var(--space-4);
+    }
+  }
   .designed-around {
-    margin-top: var(--space-4);
-    color: var(--brass);
+    margin-top: var(--space-5);
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(20px, 2.6vw, 32px);
+    color: var(--bone);
+  }
+  @media (min-width: 860px) {
+    .designed-around { text-align: right; }
   }
 
   /* 03 — Lifestyle interruption */
-  .lifestyle-break :global(.image-slot-overlay) {
-    justify-content: flex-start;
-    padding-top: var(--space-4);
+  .lifestyle-heading {
+    margin-top: var(--space-2);
   }
 
   /* 04 — Range */
-  .range h2 { margin-bottom: var(--space-2); }
+  .range-intro { padding-top: var(--space-6); }
+  .range-heading {
+    margin-top: var(--space-2);
+    font-size: clamp(30px, 4vw, 56px);
+    max-width: 14ch;
+  }
 
-  /* 05 — Fabric */
-  .fabric-teaser { padding-block: var(--space-6); }
-  .fabric-grid {
+  /* ROLL */
+  .range-roll-inner { max-width: 1040px; }
+  :global(.range-roll-heading) {
+    font-size: clamp(90px, 16vw, 260px) !important;
+  }
+  .range-index { color: var(--brass); }
+  .range-roll-descriptor {
+    margin-top: var(--space-2);
+    color: var(--bone);
+  }
+  .range-roll-copy {
+    margin-top: var(--space-2);
+    max-width: 46ch;
+    color: var(--bone-muted);
+  }
+  .range-roll a.btn { margin-top: var(--space-3); }
+
+  /* DUMP */
+  .range-dump { padding-block: var(--space-6); }
+  .range-dump-grid {
     display: grid;
     gap: var(--space-4);
   }
   @media (min-width: 860px) {
-    .fabric-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+    .range-dump-grid {
+      grid-template-columns: 5fr 7fr;
+      align-items: center;
+      gap: var(--space-5);
+    }
   }
-  .fabric-spec {
-    margin-top: var(--space-2);
+  .range-dump-descriptor {
+    margin-top: var(--space-1);
     color: var(--brass);
   }
+  .range-dump-copy {
+    margin-top: var(--space-2);
+    color: var(--bone-muted);
+    max-width: 42ch;
+  }
+  .range-dump-specs {
+    margin-top: var(--space-3);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: var(--space-1);
+  }
+  .range-dump-specs dt {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--lichen);
+  }
+  .range-dump-specs dd {
+    display: inline;
+    margin-left: 0.6em;
+    font-size: var(--size-small);
+    color: var(--bone-muted);
+  }
+  .range-dump-text .btn { margin-top: var(--space-3); }
 
-  /* 06 — Final CTA */
+  /* 05 — Momentum break */
+  .momentum-break { padding-block: var(--space-7); }
+  .momentum-heading { margin-top: var(--space-3); }
+
+  /* 06 — Fabric */
+  .fabric-heading { margin-top: var(--space-2); }
+  .fabric-detail { padding-block: var(--space-6); }
+  .fabric-detail-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 860px) {
+    .fabric-detail-grid {
+      grid-template-columns: 5fr 7fr;
+      column-gap: var(--space-5);
+    }
+    .fabric-specs { border-right: 1px solid var(--line); padding-right: var(--space-4); }
+  }
+  .fabric-specs {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .fabric-specs > div { padding-top: var(--space-2); border-top: 1px solid var(--line); }
+  .fabric-specs dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--brass);
+  }
+  .fabric-specs dd {
+    margin-top: 0.3em;
+    font-size: var(--size-body);
+    color: var(--bone);
+  }
+
+  /* 07 — Final CTA */
   .register-block-inner {
     display: grid;
     gap: var(--space-4);
   }
   @media (min-width: 860px) {
     .register-block-inner { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+  :global(.register-heading) {
+    font-size: clamp(52px, 9vw, 150px) !important;
   }
 </style>

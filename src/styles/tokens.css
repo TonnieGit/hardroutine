@@ -47,9 +47,11 @@
   --space-4: 2.5rem;
   --space-5: 4rem;
   --space-6: 6rem;
+  --space-7: 9rem; /* black negative space between major editorial beats */
 
   /* Layout */
   --content-max: 1180px;
+  --content-wide: 1440px; /* monumental type / editorial breakout, wider than body copy */
   --prose-max: 68ch;
   --radius: 2px;
 }

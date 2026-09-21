@@ -1,19 +1,45 @@
 ---
-// Small mono eyebrow label, e.g. "FIELD / 01". Formalises the .mono-label
-// pattern already used sitewide (see spec.md / base.css .mono-label).
+// Nomenclature label used as a structural/brand device — "FIELD / 01",
+// "MATERIAL / 03" — not a small eyebrow tag. Renders the index as an
+// oversized mono numeral with a rule running the remaining width, so it
+// reads as equipment documentation cutting across the layout.
 interface Props {
   label: string;
   index?: string;
   class?: string;
+  light?: boolean; // for use over photography rather than the black ground
 }
-const { label, index, class: className } = Astro.props;
+const { label, index, class: className, light = false } = Astro.props;
 ---
-<p class:list={['mono-label', 'section-label', className]}>
-  {index ? `${label} / ${index}` : label}
-</p>
+<div class:list={['section-label', light && 'section-label-light', className]}>
+  <p class="mono-label section-label-text">{label}</p>
+  {index && <p class="mono-label section-label-index">{index}</p>}
+  <span class="section-label-rule" aria-hidden="true"></span>
+</div>
 
 <style>
   .section-label {
-    color: var(--brass);
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
   }
+  .section-label-text {
+    color: var(--bone-muted);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+  }
+  .section-label-index {
+    color: var(--brass);
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .section-label-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    min-width: var(--space-4);
+  }
+  .section-label-light .section-label-text { color: rgba(232, 228, 218, 0.75); }
+  .section-label-light .section-label-rule { background: rgba(232, 228, 218, 0.3); }
 </style>
