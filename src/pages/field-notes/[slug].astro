@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('field-notes');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<ArticleLayout
+  slug={entry.id}
+  title={entry.data.title}
+  metaDescription={entry.data.metaDescription}
+  standfirst={entry.data.standfirst}
+  publishDate={entry.data.publishDate}
+  updatedDate={entry.data.updatedDate}
+  authorName={entry.data.authorName}
+  readingTime={entry.data.readingTime}
+  relatedCategory={entry.data.relatedCategory}
+>
+  <Content />
+</ArticleLayout>

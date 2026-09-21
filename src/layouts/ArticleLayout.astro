@@ -1,0 +1,127 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Schema from '../components/Schema.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { site } from '../lib/site';
+import { blogPostingSchema } from '../lib/schema';
+import { categoryLabels } from '../lib/products';
+import type { Product } from '../lib/products';
+
+interface Props {
+  slug: string;
+  title: string;
+  metaDescription: string;
+  standfirst: string;
+  publishDate: Date;
+  updatedDate: Date;
+  authorName: string;
+  readingTime: string;
+  relatedCategory: Product['category'];
+}
+
+const {
+  slug,
+  title,
+  metaDescription,
+  standfirst,
+  publishDate,
+  updatedDate,
+  authorName,
+  readingTime,
+  relatedCategory,
+} = Astro.props;
+
+const path = `/field-notes/${slug}/`;
+const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+const categoryPaths: Record<Product['category'], string> = {
+  'swag-bags': '/gear/swag-bags/',
+  'duffle-bags': '/gear/duffle-bags/',
+  'rear-wheel-bags': '/gear/rear-wheel-bags/',
+};
+---
+<BaseLayout
+  title={`${title} | Hard Routine`}
+  description={metaDescription}
+  path={path}
+  image={`${site.url}/img/field-notes/${slug}.jpg`}
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Field Notes', item: `${site.url}/field-notes/` },
+    { name: title },
+  ]} />
+  <Schema schema={blogPostingSchema({
+    path,
+    headline: title,
+    description: metaDescription,
+    datePublished: publishDate.toISOString(),
+    dateModified: updatedDate.toISOString(),
+    authorName,
+    image: `${site.url}/img/field-notes/${slug}.jpg`,
+  })} />
+
+  <article class="wrap section article">
+    <h1>{title}</h1>
+    <p class="byline small text-lichen">
+      By {authorName} · Published {dateFmt(publishDate)} · Updated {dateFmt(updatedDate)} · {readingTime} read
+    </p>
+    <p class="standfirst">{standfirst}</p>
+
+    <div class="article-hero-image">
+      <ResponsiveImage
+        basePath={`/img/field-notes/${slug}`}
+        width={1200}
+        height={630}
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="prose article-body">
+      <slot />
+    </div>
+
+    <p class="prose related-link">
+      Related: <a href={categoryPaths[relatedCategory]}>{categoryLabels[relatedCategory]}</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .article { max-width: 900px; }
+  .byline { margin-top: var(--space-2); }
+  .standfirst {
+    margin-top: var(--space-3);
+    font-size: 19px;
+    color: var(--bone);
+    max-width: var(--prose-max);
+  }
+  .article-hero-image {
+    margin-top: var(--space-4);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .article-hero-image :global(img) { width: 100%; height: auto; display: block; }
+  .article-body { margin-top: var(--space-4); }
+  .article-body :global(h2) { margin-top: var(--space-5); }
+  .article-body :global(h3) { margin-top: var(--space-3); }
+  .article-body :global(p) { margin-top: var(--space-2); }
+  .article-body :global(ul),
+  .article-body :global(ol) { margin-top: var(--space-2); padding-left: 1.2em; }
+  .article-body :global(li) { margin-top: 0.4em; }
+  .article-body :global(table) { max-width: none; }
+  .article-body :global(.table-wrap) { margin-top: var(--space-3); max-width: none; }
+  .article-body :global(blockquote) {
+    border-left: 3px solid var(--brass);
+    margin-top: var(--space-3);
+    padding: var(--space-1) var(--space-3);
+    color: var(--bone);
+    font-style: italic;
+    max-width: none;
+  }
+  .article-body :global(blockquote p) { margin-top: 0; }
+  .related-link { margin-top: var(--space-5); }
+</style>

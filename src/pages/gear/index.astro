@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+---
+<BaseLayout
+  title="Gear | Hard Routine"
+  description="Swag transit bags, duffle bags and rear wheel bags in blackout technical nylon. Australian designed, built around the failures that ruin good gear. Launching early 2027."
+  path="/gear/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Gear' },
+  ]} />
+
+  <section class="wrap section">
+    <h1>Gear</h1>
+    <p class="prose">
+      Three categories, one fabric, one reason for each design decision. Every
+      bag in the range is built around a documented failure in the gear it
+      replaces — see <a href="/the-fabric/">The Fabric</a> for the material,
+      or <a href="/about/">About</a> for how we got here.
+    </p>
+
+    <div class="hub-grid">
+      <article class="card hub-card">
+        <p class="mono-label">ROLL</p>
+        <h2>Swag bags</h2>
+        <p>
+          Oversized, vented swag transit bags in three sizes. Cut for a wet
+          swag rolled badly, not a dry one rolled well.
+        </p>
+        <a href="/gear/swag-bags/" class="btn btn-ghost">Swag bags →</a>
+      </article>
+      <article class="card hub-card">
+        <p class="mono-label">HAUL</p>
+        <h2>Duffle bags</h2>
+        <p>
+          Touring duffles in coated technical nylon. Lighter than canvas,
+          water resistant, won't mildew.
+        </p>
+        <a href="/gear/duffle-bags/" class="btn btn-ghost">Duffle bags →</a>
+      </article>
+      <article class="card hub-card">
+        <p class="mono-label">DUMP</p>
+        <h2>Rear wheel bags</h2>
+        <p>
+          Welded-liner spare wheel bags for the gear you don't want inside the
+          vehicle. Real drainage, webbing that holds.
+        </p>
+        <a href="/gear/rear-wheel-bags/" class="btn btn-ghost">Rear wheel bags →</a>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub-grid {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  @media (min-width: 720px) {
+    .hub-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .hub-card p:not(.mono-label) { margin-top: var(--space-1); margin-bottom: var(--space-2); }
+</style>

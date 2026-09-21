@@ -1,0 +1,79 @@
+---
+// Netlify Forms: a real POST that works with JS disabled, detected at build
+// time because this markup ships as static HTML. If hosting elsewhere,
+// swap the form action/attributes for Formspree or Web3Forms — the field
+// set and consent wording stay the same.
+// See spec.md §2 and §8.1.
+const CONSENT_WORDING_VERSION = 'v1-2026-09-21';
+
+interface Props {
+  heading?: string;
+}
+const { heading = 'Register your interest' } = Astro.props;
+const sourcePath = Astro.url.pathname;
+---
+<div class="register-form-wrap card" id="register">
+  <h2 class="form-heading">{heading}</h2>
+  <form
+    method="post"
+    action="/register/thanks/"
+    name="register-interest"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    class="register-form"
+  >
+    <input type="hidden" name="form-name" value="register-interest" />
+    <input type="hidden" name="consent_wording_version" value={CONSENT_WORDING_VERSION} />
+    <input type="hidden" name="source_url" value={sourcePath} />
+
+    <p class="honeypot-field" aria-hidden="true">
+      <label for="ri-bot-field">Leave this field blank</label>
+      <input id="ri-bot-field" type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+    </p>
+
+    <div class="field">
+      <label for="ri-email">Email address</label>
+      <input type="email" id="ri-email" name="email" required
+             autocomplete="email" inputmode="email"
+             aria-describedby="ri-email-help">
+      <p id="ri-email-help" class="field-help">
+        We'll email you at launch, plus occasional product news.
+      </p>
+    </div>
+
+    <fieldset class="field">
+      <legend>Which are you interested in? (optional)</legend>
+      <label><input type="checkbox" name="interest" value="swag-bags"> Swag transit bags</label>
+      <label><input type="checkbox" name="interest" value="duffle-bags"> Duffle bags</label>
+      <label><input type="checkbox" name="interest" value="rear-wheel-bags"> Rear wheel bags</label>
+    </fieldset>
+
+    <div class="field consent">
+      <input type="checkbox" id="ri-consent" name="consent" value="yes" required>
+      <label for="ri-consent">
+        Yes, email me when Hard Routine launches and send me occasional product
+        news. I can unsubscribe at any time. See our
+        <a href="/privacy/">Privacy Policy</a>.
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register my interest</button>
+  </form>
+</div>
+
+<style>
+  .register-form-wrap {
+    max-width: 560px;
+  }
+  .form-heading {
+    font-size: 22px;
+    margin-bottom: var(--space-2);
+  }
+  .register-form button {
+    margin-top: var(--space-2);
+    width: 100%;
+  }
+  @media (min-width: 480px) {
+    .register-form button { width: auto; }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+
+const lastUpdated = '21 September 2026';
+---
+<BaseLayout
+  title="Terms of Use | Hard Routine"
+  description="Terms of use for the Hard Routine website, including that no products are currently offered for sale and registering interest creates no obligation."
+  path="/terms/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Terms' },
+  ]} />
+
+  <article class="wrap section prose">
+    <h1>Terms of Use</h1>
+    <p class="small text-lichen">Last updated: {lastUpdated}</p>
+
+    <p>
+      These terms govern your use of {site.url.replace('https://', '')}
+      (the "site"), operated by Hard Routine, ABN {site.abn}. By using the
+      site, you agree to them.
+    </p>
+
+    <h2>No products are currently for sale</h2>
+    <p>
+      Hard Routine's products are in development and are <strong>not
+      currently offered for sale</strong>. Nothing on this site — including
+      product pages, specifications and imagery — is an offer to sell or a
+      solicitation to buy. We expect the first range to be available in
+      {site.launchWindow}.
+    </p>
+
+    <h2>Registering interest creates no obligation</h2>
+    <p>
+      Submitting your details through a register-interest form does not
+      create a contract, a reservation, or any obligation on Hard Routine
+      to sell you a product, or on you to buy one. It only means we'll
+      contact you, in line with our <a href="/privacy/">Privacy Policy</a>,
+      when we have something to tell you.
+    </p>
+
+    <h2>Specifications are indicative</h2>
+    <p>
+      All measurements, weights, capacities, materials and other
+      specifications shown on this site are indicative of the current
+      design and are subject to change before release without notice. We'll
+      correct pages as designs are finalised, but nothing on this site
+      should be relied on as a final, confirmed specification until the
+      product is actually offered for sale.
+    </p>
+
+    <h2>Intellectual property</h2>
+    <p>
+      The Hard Routine name, logo, product names (including ROLL, HAUL and
+      DUMP) and the content of this site are owned by Hard Routine or
+      licensed to us. You may not reproduce, distribute or create
+      derivative works from this content without our written permission.
+    </p>
+
+    <h2>Accuracy and availability of the site</h2>
+    <p>
+      We try to keep this site accurate and available, but we don't
+      guarantee it will be error-free or uninterrupted. We may change,
+      suspend or discontinue any part of the site at any time.
+    </p>
+
+    <h2>Liability</h2>
+    <p>
+      To the extent permitted by law, Hard Routine is not liable for any
+      loss or damage arising from your use of this site. Nothing in these
+      terms excludes, restricts or modifies any consumer guarantee under
+      the Australian Consumer Law that cannot lawfully be excluded.
+    </p>
+
+    <h2>Third-party links</h2>
+    <p>
+      This site may link to third-party sites, including our social
+      channels. We're not responsible for the content or privacy practices
+      of sites we don't operate.
+    </p>
+
+    <h2>Governing law</h2>
+    <p>
+      These terms are governed by the laws of Queensland, Australia, and
+      you submit to the non-exclusive jurisdiction of its courts.
+    </p>
+
+    <h2>Changes to these terms</h2>
+    <p>
+      We may update these terms from time to time. The date at the top of
+      this page shows when they were last changed.
+    </p>
+
+    <h2>Contact</h2>
+    <p class="not-prose">
+      <strong>Hard Routine</strong><br />
+      ABN {site.abn}<br />
+      {site.postalAddress}<br />
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-prose { max-width: none; margin-top: var(--space-2); line-height: 1.8; }
+</style>

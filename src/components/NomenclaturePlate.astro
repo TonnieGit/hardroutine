@@ -1,0 +1,20 @@
+---
+import type { Product } from '../lib/products';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+---
+<div class="plate">
+  <p class="plate-name">{product.name}</p>
+  <p class="plate-sku">SKU {product.sku}</p>
+  <dl class="plate-specs">
+    {product.specs.slice(0, 4).map((s) => (
+      <div class="plate-spec">
+        <dt>{s.label}</dt>
+        <dd>{s.value}</dd>
+      </div>
+    ))}
+  </dl>
+</div>

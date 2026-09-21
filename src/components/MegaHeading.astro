@@ -1,0 +1,36 @@
+---
+// Monumental multi-line display heading. Renders each line of `lines` on
+// its own row at cinematic scale — see hard-routine-design-brief.md §5-7.
+// The full heading text is always present as real text (not an image),
+// so it stays crawlable/accessible per brief §36/§46.
+interface Props {
+  lines: string[];
+  size?: 'xl' | 'lg' | 'md';
+  as?: 'h1' | 'h2' | 'h3';
+  class?: string;
+}
+const { lines, size = 'lg', as: Tag = 'h2', class: className } = Astro.props;
+---
+<Tag class:list={['mega-heading', `mega-${size}`, className]}>
+  {lines.map((line, i) => (
+    <>
+      <span class="mega-line">{line}</span>
+      {i < lines.length - 1 && <br />}
+    </>
+  ))}
+</Tag>
+
+<style>
+  .mega-heading {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--bone);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+  }
+  .mega-xl { font-size: var(--display-xl); }
+  .mega-lg { font-size: var(--display-lg); }
+  .mega-md { font-size: var(--display-md); }
+  .mega-line { display: inline-block; }
+</style>

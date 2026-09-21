@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+---
+<BaseLayout
+  title="The Fabric — 500D Coated Nylon, and Why Not Canvas | Hard Routine"
+  description="Why Hard Routine uses 500D PU-coated nylon oxford instead of cotton canvas, and why every bag is lined in bone. Materials, construction and the trade-offs."
+  path="/the-fabric/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'The Fabric' },
+  ]} />
+
+  <article class="wrap section prose">
+    <h1>One fabric, chosen for a reason</h1>
+    <p>
+      Every Hard Routine product is made from the same material:
+      <strong>500D PU-coated nylon oxford</strong>, printed with a
+      topographic contour pattern, in blackout. Here's how we got there and
+      what we gave up.
+    </p>
+
+    <h2>Why not cotton canvas?</h2>
+    <p>
+      Canvas is the Australian default for good reasons. It's tough, it
+      breathes, it ages well, and it can be repaired. For a swag you sleep
+      in, it's the right answer — breathability against your body genuinely
+      matters.
+    </p>
+    <p>
+      For a bag that lives in a vehicle, it isn't. Cotton absorbs water, so
+      a wet canvas bag gains kilos and takes days to dry. Cotton is
+      organic, so mould feeds on it. And canvas is heavy — a 70 litre
+      canvas duffle can weigh over 2 kg before you put anything in it.
+    </p>
+    <p>
+      Coated nylon sheds water, gives mould nothing to eat, and weighs
+      about half as much. The trade-off is that it doesn't breathe, which
+      is why our swag bags carry dedicated vent panels rather than relying
+      on the fabric.
+    </p>
+
+    <h2>What does 500D mean?</h2>
+    <p>
+      <strong>Denier is a measure of yarn thickness, not fabric
+      strength.</strong> 500D nylon uses a yarn weighing 500 grams per 9,000
+      metres. Higher denier generally means a heavier, more
+      abrasion-resistant cloth, but weave, coating and finish matter as
+      much.
+    </p>
+    <p>
+      For context: a typical backpack is 210–420D, a heavy-duty military
+      pack is 1000D, and 500D sits in the range used for gear that gets
+      thrown around without needing to survive being dragged behind a
+      vehicle.
+    </p>
+    <p>
+      We're not going to call it Cordura, because it isn't. CORDURA® is a
+      registered Invista trademark applied to licensed fabrics, and ours
+      isn't one. It's 500D PU-coated nylon oxford, which is what it says on
+      the roll.
+    </p>
+
+    <h2>Why blackout, and why it isn't camouflage</h2>
+    <p>
+      The pattern is topographic — contour lines, the kind on a topo map.
+      We chose it because it reads as navigation and terrain rather than
+      costume, and because no Australian camping brand is using it.
+    </p>
+    <p>
+      <strong>We don't call it camouflage and we won't.</strong> Nothing in
+      the Australian landscape is black. A blackout bag does not conceal
+      you in the bush and any brand telling you otherwise is selling you a
+      story. What blackout actually gives you is low glare, dirt that
+      doesn't show, and gear that looks right against a blacked-out build.
+    </p>
+    <p>
+      One honest caveat: <strong>black absorbs heat.</strong> A black bag
+      left in full sun in the Kimberley will be hot to touch. That's a real
+      trade-off of the colour and we'd rather you knew.
+    </p>
+
+    <h2>Why every bag is lined in bone</h2>
+    <p>
+      Black-on-black interiors are miserable. You cannot find a head torch
+      in a black bag at 9pm, which is exactly when you need one.
+    </p>
+    <p>
+      Every Hard Routine bag is lined in bone — a warm off-white that
+      reflects what light there is. It's the single most useful feature in
+      the range and it costs almost nothing to include, which is why we
+      can't explain why it isn't standard everywhere.
+    </p>
+
+    <h2>Hardware</h2>
+    <div class="table-wrap not-prose" tabindex="0" role="region" aria-label="Hardware specification table">
+      <table>
+        <thead>
+          <tr><th scope="col">Component</th><th scope="col">Specification</th><th scope="col">Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Zip chain</td>
+            <td>YKK #10 VISLON</td>
+            <td>Coarse moulded acetal. Sheds grit instead of jamming — fine-gauge zips are the most-reported failure in Australian 4WD gear</td>
+          </tr>
+          <tr>
+            <td>Zip slider</td>
+            <td>Auto-lock</td>
+            <td>Stops the zip creeping open on corrugations</td>
+          </tr>
+          <tr>
+            <td>Storm flap</td>
+            <td>Full length, over the chain</td>
+            <td>Keeps fabric out of the zip path. A zip that catches the bag's own fabric writes off the product</td>
+          </tr>
+          <tr>
+            <td>Webbing</td>
+            <td>38–50 mm UV-stabilised polyester</td>
+            <td>Nylon webbing degrades faster under Australian UV</td>
+          </tr>
+          <tr>
+            <td>Thread</td>
+            <td>UV-stabilised bonded polyester</td>
+            <td>On exposed gear the stitching usually fails before the fabric does</td>
+          </tr>
+          <tr>
+            <td>Seams</td>
+            <td>Stitched and bar-tacked</td>
+            <td>No heat-sensitive seam tape — reviewers report tape lifting above 25 °C</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>What we haven't solved</h2>
+    <p>
+      <strong>Our bags are water resistant, not waterproof.</strong> The
+      seams are stitched, not welded. Sustained submersion will get water
+      in.
+    </p>
+    <p>
+      <strong>A vented bag reduces mould risk, it doesn't eliminate
+      it.</strong> Dry your gear properly. Nothing on the market changes
+      that.
+    </p>
+    <p>
+      <strong>PU coatings have a finite life.</strong> Heat and humidity
+      break them down eventually. We'd rather tell you that than claim a
+      lifetime warranty we can't honour.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-prose { max-width: none; margin-top: var(--space-2); }
+</style>

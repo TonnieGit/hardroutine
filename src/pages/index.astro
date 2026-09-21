@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RegisterForm from '../components/RegisterForm.astro';
+import Schema from '../components/Schema.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import MegaHeading from '../components/MegaHeading.astro';
+import ImageSlot from '../components/ImageSlot.astro';
+import TechnicalCallout from '../components/TechnicalCallout.astro';
+import ProductSystem from '../components/ProductSystem.astro';
+import { organizationSchema, websiteSchema } from '../lib/schema';
+import { site } from '../lib/site';
+---
+<BaseLayout
+  title="Hard Routine | Blackout 4WD Storage & Camping Gear Bags"
+  description="Australian-designed blackout storage for 4WD touring — swag transit bags, duffles and rear wheel bags in topographic technical nylon. Launching early 2027. Register interest."
+  path="/"
+>
+  <Schema schema={[organizationSchema(), websiteSchema()]} />
+
+  <!-- 01 — HERO -->
+  <section class="hero">
+    <ImageSlot
+      slotName="HERO-4WD-DUST-DUSK"
+      alt=""
+      minHeight="100svh"
+      fullBleed
+      class="hero-image"
+    >
+      <div class="wrap hero-inner">
+        <MegaHeading
+          as="h1"
+          size="xl"
+          lines={['Gear that gets', 'packed away', 'properly']}
+        />
+        <p class="lede">
+          Blackout storage for 4WD touring and camping. Built around the problems that
+          ruin good gear — wet canvas, red dust, and the bag that tore the first time
+          you used it.
+        </p>
+        <p class="launch-line mono-label">Launching {site.launchWindow}</p>
+        <div class="hero-ctas">
+          <a href="/register/" class="btn btn-primary">Register your interest</a>
+          <a href="/gear/" class="btn btn-ghost">See the range</a>
+        </div>
+      </div>
+    </ImageSlot>
+  </section>
+
+  <!-- 02 — BRAND STATEMENT / THE PROBLEM (black, no cards) -->
+  <section class="section-black problem">
+    <div class="wrap prose">
+      <SectionLabel label="FIELD" index="01" />
+      <h2>The bag that came with it is the part that fails first</h2>
+      <p>
+        Ask anyone who's owned a swag or an awning for more than two seasons. The
+        canvas outlasts the bag it came in. The bag is cut too tight to get the
+        swag back into wet, it tears at the corners, the zip jams with dust, and
+        when it leaks the thing inside goes mouldy.
+      </p>
+      <p>
+        We went and read fifteen years of Australian forum threads and several
+        hundred product reviews before we drew a single pattern. Three failures
+        came up over and over:
+      </p>
+    </div>
+    <div class="wrap">
+      <TechnicalCallout index="01" title="Cut too small">
+        <p>
+          The supplied bag fits a factory-rolled swag in a warehouse. It does not
+          fit a wet, sandy, badly-rolled swag at 6am in the rain.
+        </p>
+      </TechnicalCallout>
+      <TechnicalCallout index="02" title="The zip eats the fabric">
+        <p>
+          Fine-gauge zips jam with grit and catch the canvas they're meant to
+          protect. People report torn tents and broken pulls from the same action.
+        </p>
+      </TechnicalCallout>
+      <TechnicalCallout index="03" title="Waterproof means it can't breathe">
+        <p>
+          A damp swag sealed into a PVC bag is a mould incubator. Gear arrives
+          home furry. The industry's answer is a blog post about how to scrub it
+          off.
+        </p>
+      </TechnicalCallout>
+    </div>
+    <div class="wrap">
+      <p class="prose designed-around">We designed around all three.</p>
+    </div>
+  </section>
+
+  <!-- 03 — LIFESTYLE INTERRUPTION -->
+  <ImageSlot
+    slotName="LIFESTYLE-SWAG-PACKUP"
+    alt=""
+    ratio="21 / 9"
+    fullBleed
+    class="lifestyle-break"
+  >
+    <div class="wrap">
+      <SectionLabel label="FIELD" index="02" />
+    </div>
+  </ImageSlot>
+
+  <!-- 04 — THE RANGE -->
+  <section class="section range">
+    <div class="wrap">
+      <h2>Three things, done properly</h2>
+
+      <ProductSystem
+        line="ROLL"
+        descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
+        href="/gear/swag-bags/"
+        linkLabel="Swag bags →"
+        imageBasePath="/img/roll-1200-4x3"
+        imageAlt=""
+        variant="image-left"
+      >
+        Oversized on purpose. Sized for a wet swag rolled badly, not a dry one
+        rolled well. Vented under storm hoods at both ends so damp gear can
+        dry instead of stewing.
+      </ProductSystem>
+
+      <ProductSystem
+        line="HAUL"
+        descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
+        href="/gear/duffle-bags/"
+        linkLabel="Duffle bags →"
+        imageBasePath="/img/haul-70-4x3"
+        imageAlt=""
+        variant="image-right"
+      >
+        A touring duffle in coated technical nylon, not cotton canvas.
+        Doesn't hold water, doesn't mildew, doesn't weigh four kilos before
+        you put anything in it.
+      </ProductSystem>
+
+      <ProductSystem
+        line="DUMP"
+        descriptor="REAR WHEEL BAGS / 60 · 90 L"
+        href="/gear/rear-wheel-bags/"
+        linkLabel="Rear wheel bags →"
+        imageBasePath="/img/dump-60-4x3"
+        imageAlt=""
+        variant="image-left"
+      >
+        For everything you don't want inside the vehicle. Wet towels, muddy
+        recovery gear, firewood, rubbish. Welded liner, drains properly,
+        webbing that won't let go on the Birdsville Track.
+      </ProductSystem>
+    </div>
+  </section>
+
+  <!-- 05 — THE FABRIC -->
+  <section class="section-black fabric-teaser">
+    <div class="wrap fabric-grid">
+      <ImageSlot
+        slotName="DETAIL-FABRIC-MACRO"
+        alt=""
+        ratio="1 / 1"
+        class="fabric-image"
+      />
+      <div class="prose fabric-copy">
+        <SectionLabel label="MATERIAL" index="03" />
+        <MegaHeading as="h2" size="md" lines={['One fabric', 'across the range']} />
+        <p>
+          500D PU-coated nylon oxford in a topographic contour print. Not cotton
+          canvas — it's lighter, it doesn't absorb water, it won't mildew if you
+          pack it damp, and it doesn't shrink.
+        </p>
+        <p>
+          Blackout, because nothing in the Australian bush is black and we're not
+          going to pretend it's camouflage. It's low-glare, it doesn't show red
+          dust, and it looks right against a blacked-out build.
+        </p>
+        <p class="mono-label fabric-spec">500D PU-COATED NYLON OXFORD</p>
+        <p><a href="/the-fabric/">How we chose it →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — FINAL LIFESTYLE / CTA -->
+  <ImageSlot
+    slotName="LIFESTYLE-CAMPSITE-DUSK"
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="register-image"
+  >
+    <div class="wrap register-block-inner">
+      <div class="prose">
+        <MegaHeading as="h2" size="lg" lines={['Launching', site.launchWindow]} />
+        <p>
+          Register your interest and you'll hear first. We'll tell you when the
+          range is live, what it costs, and when the first run sells out. No
+          spam, no daily emails.
+        </p>
+      </div>
+      <RegisterForm />
+    </div>
+  </ImageSlot>
+</BaseLayout>
+
+<style>
+  /* 01 — Hero */
+  .hero-inner { max-width: 760px; }
+  .lede {
+    margin-top: var(--space-3);
+    font-size: 19px;
+    color: var(--bone);
+  }
+  .launch-line {
+    margin-top: var(--space-3);
+    color: var(--brass);
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  /* 02 — Brand statement */
+  .problem { padding-block: var(--space-6); }
+  .problem .wrap.prose { margin-bottom: var(--space-4); }
+  .designed-around {
+    margin-top: var(--space-4);
+    color: var(--brass);
+  }
+
+  /* 03 — Lifestyle interruption */
+  .lifestyle-break :global(.image-slot-overlay) {
+    justify-content: flex-start;
+    padding-top: var(--space-4);
+  }
+
+  /* 04 — Range */
+  .range h2 { margin-bottom: var(--space-2); }
+
+  /* 05 — Fabric */
+  .fabric-teaser { padding-block: var(--space-6); }
+  .fabric-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 860px) {
+    .fabric-grid { grid-template-columns: 1fr 1fr; align-items: center; }
+  }
+  .fabric-spec {
+    margin-top: var(--space-2);
+    color: var(--brass);
+  }
+
+  /* 06 — Final CTA */
+  .register-block-inner {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 860px) {
+    .register-block-inner { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+</style>

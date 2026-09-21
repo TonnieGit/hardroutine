@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import RegisterForm from '../../components/RegisterForm.astro';
+import { site } from '../../lib/site';
+---
+<BaseLayout
+  title="Register Your Interest | Hard Routine"
+  description="Be first to know when Hard Routine launches. Blackout 4WD storage — swag bags, duffles and rear wheel bags. Launching early 2027."
+  path="/register/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Register Interest' },
+  ]} />
+
+  <article class="wrap section">
+    <div class="prose">
+      <h1>Be first when we launch</h1>
+      <p>
+        The first range lands in {site.launchWindow}. Register below and
+        you'll hear before anyone else — what's in it, what it costs, and
+        when it's available.
+      </p>
+      <p>
+        We'll email you at launch and occasionally with product news. Not
+        daily, not weekly. Unsubscribe any time, one click.
+      </p>
+    </div>
+
+    <div class="section-block">
+      <RegisterForm />
+    </div>
+
+    <div class="prose section-block">
+      <h2>What you're registering for</h2>
+      <p><strong>ROLL</strong> — oversized vented swag transit bags in three sizes</p>
+      <p><strong>HAUL</strong> — 40, 70 and 100 litre coated-nylon touring duffles</p>
+      <p><strong>DUMP</strong> — 60 and 90 litre rear wheel bags with welded liners</p>
+      <p>
+        All in 500D PU-coated nylon oxford, blackout topographic print, YKK
+        #10 hardware and bone linings.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .section-block { margin-top: var(--space-5); }
+</style>

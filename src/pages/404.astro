@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Page Not Found | Hard Routine"
+  description="This page doesn't exist. Find your way back to Hard Routine's gear, field notes or home page."
+  path="/404/"
+  noindex={true}
+>
+  <article class="wrap section prose">
+    <h1>Page not found</h1>
+    <p>The page you're after doesn't exist, or it's moved.</p>
+    <p>Try one of these instead:</p>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/gear/">Gear</a></li>
+      <li><a href="/field-notes/">Field Notes</a></li>
+    </ul>
+  </article>
+</BaseLayout>

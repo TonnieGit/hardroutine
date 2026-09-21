@@ -1,0 +1,23 @@
+---
+import { breadcrumbSchema, type Crumb } from '../lib/schema';
+import Schema from './Schema.astro';
+
+interface Props {
+  crumbs: Crumb[];
+}
+const { crumbs } = Astro.props;
+---
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <ol>
+    {crumbs.map((c, i) => (
+      <li>
+        {i === crumbs.length - 1 || !c.item ? (
+          <span aria-current="page">{c.name}</span>
+        ) : (
+          <a href={c.item}>{c.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+<Schema schema={breadcrumbSchema(crumbs)} />

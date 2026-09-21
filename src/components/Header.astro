@@ -1,0 +1,159 @@
+---
+const nav = [
+  { label: 'Gear', href: '/gear/' },
+  { label: 'The Fabric', href: '/the-fabric/' },
+  { label: 'Field Notes', href: '/field-notes/' },
+  { label: 'About', href: '/about/' },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap site-header-inner">
+    <a href="/" class="wordmark">Hard Routine</a>
+
+    <nav class="site-nav-desktop" aria-label="Primary">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href="/register/" class="btn btn-primary register-cta">Register interest</a>
+    </nav>
+
+    <details class="site-nav-mobile">
+      <summary>
+        <span class="visually-hidden">Menu</span>
+        <span aria-hidden="true">Menu</span>
+      </summary>
+      <nav aria-label="Primary">
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/register/" class="btn btn-primary register-cta">Register interest</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: var(--bitumen);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-2);
+    gap: var(--space-3);
+    position: relative;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: var(--bone);
+    text-decoration: none;
+  }
+  .wordmark:hover { color: var(--bone); }
+
+  .site-nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .site-nav-desktop ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-3);
+    padding: 0;
+  }
+  .site-nav-desktop a,
+  .site-nav-mobile a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--bone);
+    padding: 0.5em 0;
+    border-bottom: 2px solid transparent;
+  }
+  .site-nav-desktop a:hover,
+  .site-nav-desktop a[aria-current='page'],
+  .site-nav-mobile a:hover,
+  .site-nav-mobile a[aria-current='page'] {
+    color: var(--brass);
+    border-bottom-color: var(--brass);
+  }
+  .site-nav-desktop a.register-cta,
+  .site-nav-mobile a.register-cta {
+    color: var(--bitumen);
+  }
+  .site-nav-desktop a.register-cta:hover,
+  .site-nav-mobile a.register-cta:hover {
+    color: var(--bitumen);
+    border-bottom-color: transparent;
+  }
+  .register-cta {
+    min-height: 40px;
+    padding: 0.7em 1.3em;
+  }
+
+  .site-nav-mobile { display: none; }
+
+  @media (max-width: 780px) {
+    .site-nav-desktop { display: none; }
+    .site-nav-mobile {
+      display: block;
+      margin-left: auto;
+    }
+    .site-nav-mobile summary {
+      list-style: none;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0.6em 1em;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .site-nav-mobile summary::-webkit-details-marker { display: none; }
+    .site-nav-mobile[open] summary { border-color: var(--brass); color: var(--brass); }
+    .site-nav-mobile nav {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      background: var(--bitumen);
+      border-bottom: 1px solid var(--line);
+      padding: var(--space-3);
+    }
+    .site-nav-mobile ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+  }
+</style>

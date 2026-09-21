@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[[redirects]]
+  from = "https://hardroutine.au/*"
+  to = "https://www.hardroutine.com.au/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://hardroutine.com.au/*"
+  to = "https://www.hardroutine.com.au/:splat"
+  status = 301
+  force = true

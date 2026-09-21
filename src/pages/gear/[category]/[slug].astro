@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import AvailabilityNotice from '../../../components/AvailabilityNotice.astro';
+import NomenclaturePlate from '../../../components/NomenclaturePlate.astro';
+import RegisterForm from '../../../components/RegisterForm.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Schema from '../../../components/Schema.astro';
+import ResponsiveImage from '../../../components/ResponsiveImage.astro';
+import { site } from '../../../lib/site';
+import {
+  products,
+  getProductsByCategory,
+  relatedReadingByCategory,
+  categoryLabels,
+} from '../../../lib/products';
+import { productSchema } from '../../../lib/schema';
+
+export function getStaticPaths() {
+  return products.map((p) => ({
+    params: { category: p.category, slug: p.slug },
+    props: { product: p },
+  }));
+}
+
+const { product } = Astro.props;
+const path = `${product.categoryPath}${product.slug}/`;
+const siblings = getProductsByCategory(product.category).filter((p) => p.slug !== product.slug);
+const relatedReading = relatedReadingByCategory[product.category];
+---
+<BaseLayout
+  title={product.title}
+  description={product.meta}
+  path={path}
+  image={`${site.url}/img/${product.slug}-16x9.jpg`}
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Gear', item: `${site.url}/gear/` },
+    { name: categoryLabels[product.category], item: `${site.url}${product.categoryPath}` },
+    { name: `${product.line} ${product.size}` },
+  ]} />
+  <Schema schema={productSchema(product, path)} />
+
+  <article class="wrap section product-page">
+    <h1>{product.h1}</h1>
+    <AvailabilityNotice />
+    <p class="prose intro">{product.intro}</p>
+
+    <div class="product-hero-image">
+      <ResponsiveImage
+        basePath={`/img/${product.slug}-16x9`}
+        width={1200}
+        height={675}
+        alt={`${product.name} in ${product.color.toLowerCase()} ${product.material}`}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <NomenclaturePlate product={product} />
+
+    <div class="prose section-block">
+      <h2>What it's for</h2>
+      <p>{product.whatFor}</p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>Specification</h2>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
+      <table>
+        <tbody>
+          {product.specs.map((s) => (
+            <tr><th scope="row">{s.label}</th><td>{s.value}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose section-block">
+      <h2>What's different about it</h2>
+      <ul>
+        {product.whatsDifferent.map((point) => <li>{point}</li>)}
+      </ul>
+    </div>
+
+    <div class="section-block">
+      <RegisterForm heading={`Register interest in the ${product.line} ${product.size}`} />
+    </div>
+
+    <div class="section-block related-grid">
+      {siblings.length > 0 && (
+        <div class="related-col">
+          <h2>Other sizes</h2>
+          <div class="sibling-grid">
+            {siblings.map((p) => <ProductCard product={p} />)}
+          </div>
+        </div>
+      )}
+      <div class="related-col prose">
+        <h2>Related reading</h2>
+        <ul>
+          {relatedReading.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .product-page { max-width: 900px; }
+  .intro { margin-top: var(--space-2); font-size: 19px; }
+  .product-hero-image {
+    margin-top: var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .product-hero-image img { width: 100%; height: auto; display: block; }
+  .section-block { margin-top: var(--space-5); }
+  .section-block ul { padding-left: 1.2em; }
+  .section-block li { margin-top: 0.4em; }
+  .related-grid { display: grid; gap: var(--space-4); }
+  .sibling-grid {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+  @media (min-width: 560px) {
+    .sibling-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .related-col ul { padding-left: 1.2em; margin-top: var(--space-1); }
+  .related-col li { margin-top: 0.4em; }
+</style>

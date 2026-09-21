@@ -1,0 +1,64 @@
+---
+import type { Product } from '../lib/products';
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const href = `${product.categoryPath}${product.slug}/`;
+const capacity = product.specs.find((s) => s.label === 'Capacity')?.value;
+const weight = product.specs.find((s) => s.label === 'Empty weight')?.value;
+---
+<article class="product-card">
+  <a href={href} class="product-card-image" tabindex="-1" aria-hidden="true">
+    <ResponsiveImage
+      basePath={`/img/${product.slug}-4x3`}
+      width={800}
+      height={600}
+      alt=""
+      loading="lazy"
+    />
+  </a>
+  <div class="product-card-body">
+    <p class="mono-label">{product.sku}</p>
+    <h3><a href={href}>{product.line} {product.size}</a></h3>
+    <dl class="product-card-specs">
+      {capacity && (
+        <div><dt>Capacity</dt><dd>{capacity}</dd></div>
+      )}
+      {weight && (
+        <div><dt>Weight</dt><dd>{weight}</dd></div>
+      )}
+    </dl>
+    <a href={href} class="btn btn-ghost product-card-link">View {product.line} {product.size} →</a>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    background: var(--char);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .product-card-image { display: block; line-height: 0; }
+  .product-card-image img { width: 100%; height: auto; }
+  .product-card-body { padding: var(--space-3); }
+  .product-card h3 { margin-top: 0.3em; font-size: 22px; }
+  .product-card h3 a { color: var(--bone); text-decoration: none; }
+  .product-card h3 a:hover { color: var(--brass); }
+  .product-card-specs {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--size-small);
+  }
+  .product-card-specs dt { color: var(--lichen); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .product-card-specs dd { color: var(--bone); margin-top: 0.2em; }
+  .product-card-link {
+    margin-top: var(--space-3);
+    width: 100%;
+  }
+</style>

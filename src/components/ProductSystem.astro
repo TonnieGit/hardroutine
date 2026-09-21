@@ -1,0 +1,75 @@
+---
+// One large, distinct composition per product line — replaces a repeated
+// card grid. See hard-routine-design-brief.md §21 SECTION 04 ("three
+// visually distinct compositions... equipment systems, not category
+// tiles") and §48 (ProductSystem primitive).
+import MegaHeading from './MegaHeading.astro';
+import ImageSlot from './ImageSlot.astro';
+
+interface Props {
+  line: string; // "ROLL"
+  descriptor: string; // "SWAG TRANSIT / 900 · 1200 · 1400 MM"
+  href: string;
+  linkLabel: string; // "Explore ROLL →"
+  imageBasePath: string; // "/img/roll-1200-4x3"
+  imageAlt: string;
+  variant?: 'image-left' | 'image-right';
+}
+const {
+  line,
+  descriptor,
+  href,
+  linkLabel,
+  imageBasePath,
+  imageAlt,
+  variant = 'image-left',
+} = Astro.props;
+---
+<article class:list={['product-system', variant]}>
+  <ImageSlot
+    slotName={`PRODUCT-${line}-STUDIO`}
+    basePath={imageBasePath}
+    alt={imageAlt}
+    ratio="4 / 3"
+    class="product-system-image"
+    width={800}
+    height={600}
+  />
+  <div class="product-system-body">
+    <MegaHeading lines={[line]} size="md" as="h3" />
+    <p class="mono-label product-system-descriptor">{descriptor}</p>
+    <p class="product-system-copy"><slot /></p>
+    <a href={href} class="btn btn-ghost">{linkLabel}</a>
+  </div>
+</article>
+
+<style>
+  .product-system {
+    display: grid;
+    gap: var(--space-3);
+    align-items: center;
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 860px) {
+    .product-system {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-5);
+    }
+    /* :global — .product-system-image is the root of the child ImageSlot
+       component, which doesn't carry this component's scope attribute. */
+    .product-system.image-right :global(.product-system-image) { order: 2; }
+    .product-system.image-right .product-system-body { order: 1; }
+  }
+  .product-system-descriptor {
+    margin-top: var(--space-1);
+    color: var(--brass);
+  }
+  .product-system-copy {
+    margin-top: var(--space-2);
+    color: var(--bone-muted);
+  }
+  .product-system-body .btn {
+    margin-top: var(--space-3);
+  }
+</style>

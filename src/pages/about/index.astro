@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+---
+<BaseLayout
+  title="About Hard Routine — Australian Blackout 4WD Storage"
+  description="Hard Routine is an Australian brand making blackout storage for 4WD touring. Founded in Brisbane in 2026. Here's who we are and why we started."
+  path="/about/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'About' },
+  ]} />
+
+  <article class="wrap section prose">
+    <h1>About Hard Routine</h1>
+    <p>
+      <strong>Hard Routine is an Australian brand making blackout storage
+      and gear bags for 4WD touring and camping.</strong> We're based in
+      Brisbane, Queensland, and we started in 2026. Our first range — swag
+      transit bags, duffles and rear wheel bags — launches in {site.launchWindow}.
+    </p>
+
+    <h2>What "hard routine" means</h2>
+    <p>
+      Hard routine is a term from the Australian and British Army. It means
+      operating with no lights, no cooking, no noise and no trace —
+      everything squared away, nothing left behind, nothing given away.
+    </p>
+    <p>
+      We took the name because it describes how we think gear should work.
+      Pack properly, leave nothing, don't advertise yourself. It's also a
+      fair description of what we build: storage for people who'd rather
+      their kit was sorted than showy.
+    </p>
+
+    <h2>Why we started</h2>
+    <p>
+      Because the bag that comes with your gear is almost always the worst
+      part of it.
+    </p>
+    <p>
+      Before we drew a single pattern we read fifteen years of Australian
+      forum threads and several hundred product reviews. The same failures
+      came up relentlessly — bags cut too small to repack a wet swag, fine
+      zips jamming with red dust, waterproof sleeves that turned damp
+      canvas mouldy, and straps that let go on corrugated roads.
+    </p>
+    <p>
+      None of that is hard to fix. It just hasn't been, because a carry bag
+      is an afterthought bundled with a more expensive product. We decided
+      to make the afterthought the product.
+    </p>
+
+    <h2>How we design</h2>
+    <p>
+      We start from the complaint, not the category. Every design decision
+      in the first range traces to a specific documented failure:
+    </p>
+    <ul>
+      <li>Bags are <strong>cut oversized</strong> because "doesn't fit unless you spend 45 minutes rolling" is the most common complaint in Australian swag reviews.</li>
+      <li>We use <strong>YKK #10 VISLON</strong> because owners report fine-gauge zips filling with dust and catching the fabric they're protecting.</li>
+      <li>Swag bags are <strong>vented</strong> because a sealed waterproof sleeve is a mould incubator.</li>
+      <li>Rear wheel bags use <strong>50 mm webbing across four anchor points</strong> because attachment is the number one reported failure in that category.</li>
+    </ul>
+
+    <h2>What we won't do</h2>
+    <p>
+      We won't call our fabric Cordura, because it isn't licensed Cordura.
+      We won't call blackout "camouflage", because nothing in the
+      Australian bush is black. We won't say "military grade", because it
+      means nothing and we'd have to substantiate it. And we won't claim
+      our bags are waterproof when they're water resistant.
+    </p>
+    <p>If a claim can't survive a specification sheet, we don't make it.</p>
+
+    <h2>Contact</h2>
+    <p class="not-prose contact-block">
+      <strong>Hard Routine</strong><br />
+      ABN {site.abn}<br />
+      {site.postalAddress}<br />
+      <a href={`mailto:${site.email}`}>{site.email}</a><br />
+      <a href={`tel:${site.phoneSchema}`}>{site.phone}</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-prose.contact-block { max-width: none; line-height: 1.8; }
+</style>

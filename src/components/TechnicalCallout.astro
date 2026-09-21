@@ -1,0 +1,36 @@
+---
+// Numbered equipment-documentation-style entry, used in place of a card
+// grid — see hard-routine-design-brief.md §4 (avoid card grids) and §26
+// (numbered section labels).
+interface Props {
+  index: string; // "01"
+  title: string;
+}
+const { index, title } = Astro.props;
+---
+<div class="callout">
+  <p class="mono-label callout-index">{index} / {title}</p>
+  <div class="callout-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .callout {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-3);
+  }
+  .callout:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .callout-index {
+    color: var(--brass);
+  }
+  .callout-body {
+    margin-top: var(--space-1);
+    max-width: var(--prose-max);
+  }
+  .callout-body :global(p) {
+    color: var(--bone-muted);
+  }
+</style>

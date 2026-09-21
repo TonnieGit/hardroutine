@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+
+const lastUpdated = '21 September 2026';
+---
+<BaseLayout
+  title="Privacy Policy | Hard Routine"
+  description="How Hard Routine collects, uses, stores and discloses personal information, and how to access, correct or delete yours."
+  path="/privacy/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Privacy' },
+  ]} />
+
+  <article class="wrap section prose">
+    <h1>Privacy Policy</h1>
+    <p class="small text-lichen">Last updated: {lastUpdated}</p>
+
+    <p>
+      Hard Routine ("we", "us", "our") respects your privacy. This policy
+      explains what personal information we collect through
+      {site.url.replace('https://', '')}, why we collect it, who we
+      disclose it to, and how you can access, correct or delete it.
+    </p>
+
+    <h2>What we collect</h2>
+    <p>When you register your interest, we collect:</p>
+    <ul>
+      <li>Your email address</li>
+      <li>Your name, if you choose to give it</li>
+      <li>Which product categories you're interested in, if you tell us</li>
+      <li>Your IP address and the time of submission</li>
+      <li>The page you submitted the form from</li>
+    </ul>
+    <p>
+      When you browse the site, our analytics provider collects aggregate,
+      cookieless usage data — pages viewed, referring site, device type and
+      country. It does not identify you individually and does not use
+      tracking cookies.
+    </p>
+
+    <h2>Why we collect it</h2>
+    <p>We use this information to:</p>
+    <ul>
+      <li>Notify you when Hard Routine launches</li>
+      <li>Send occasional product news and updates, where you've consented</li>
+      <li>Understand how the site is used, so we can improve it</li>
+      <li>Meet our own record-keeping obligations under the Spam Act 2003, including proving that you consented to receive email from us</li>
+    </ul>
+
+    <h2>Legal basis</h2>
+    <p>
+      We collect and use your email address on the basis of the express
+      consent you give by ticking the consent checkbox on our
+      register-interest form. That checkbox is never pre-ticked, and the
+      wording you agreed to is recorded and versioned against your
+      submission.
+    </p>
+
+    <h2>Who we disclose it to</h2>
+    <p>Your information is disclosed to the following service providers, who process it on our behalf:</p>
+    <ul>
+      <li><strong>Netlify</strong> — our website host and the handler for register-interest form submissions</li>
+      <li><strong>Brevo</strong> — our email platform, used to send launch notifications and product news</li>
+      <li><strong>Plausible Analytics</strong> — our website analytics provider</li>
+    </ul>
+    <p>
+      We do not sell your personal information, and we do not disclose it
+      to anyone else except where required by law.
+    </p>
+
+    <h2>Where it's stored</h2>
+    <p>
+      Netlify stores form submissions and site infrastructure in the United
+      States. Plausible Analytics stores aggregate usage data in the
+      European Union. Brevo stores email subscriber data in the European
+      Union. By registering your interest, you consent to this overseas
+      storage.
+    </p>
+
+    <h2>Accessing, correcting or deleting your information</h2>
+    <p>
+      To see what we hold about you, correct it, or have it deleted, email
+      <a href={`mailto:${site.email}`}>{site.email}</a>. We'll respond
+      within 30 days.
+    </p>
+
+    <h2>Unsubscribing</h2>
+    <p>
+      Every email we send carries a one-click unsubscribe link. Requests
+      are honoured within 5 working days, and you can also unsubscribe by
+      emailing <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+
+    <h2>Complaints</h2>
+    <p>
+      If you think we've mishandled your personal information, email
+      <a href={`mailto:${site.email}`}>{site.email}</a> and we'll
+      investigate and respond. If you're not satisfied with our response,
+      you can complain to the Office of the Australian Information
+      Commissioner (OAIC) at
+      <a href="https://www.oaic.gov.au" rel="noopener">oaic.gov.au</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p class="not-prose">
+      <strong>Hard Routine</strong><br />
+      ABN {site.abn}<br />
+      {site.postalAddress}<br />
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-prose { max-width: none; margin-top: var(--space-2); line-height: 1.8; }
+</style>

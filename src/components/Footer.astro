@@ -1,0 +1,83 @@
+---
+import { site } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <p class="mono-label">Gear</p>
+      <ul>
+        <li><a href="/gear/swag-bags/">Swag bags</a></li>
+        <li><a href="/gear/duffle-bags/">Duffle bags</a></li>
+        <li><a href="/gear/rear-wheel-bags/">Rear wheel bags</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="mono-label">Brand</p>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/the-fabric/">The Fabric</a></li>
+        <li><a href="/field-notes/">Field Notes</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="mono-label">Legal</p>
+      <ul>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-social">
+      <p class="mono-label">Follow</p>
+      <ul class="social-list">
+        <li><a href={site.social.instagram}>Instagram</a></li>
+        <li><a href={site.social.youtube}>YouTube</a></li>
+        <li><a href={site.social.facebook}>Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p class="small text-lichen">ABN {site.abn}</p>
+    <p class="small text-lichen">© {year} Hard Routine. No lights. No noise. No trace.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: var(--char);
+    margin-top: var(--space-6);
+    padding-block: var(--space-5) var(--space-3);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .footer-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-1);
+  }
+  .footer-col li { margin-top: 0.5em; }
+  .footer-col a {
+    color: var(--lichen);
+    text-decoration: none;
+    font-size: var(--size-small);
+  }
+  .footer-col a:hover { color: var(--brass); }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1);
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+</style>

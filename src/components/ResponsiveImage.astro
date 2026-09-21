@@ -1,0 +1,37 @@
+---
+// Placeholder imagery until real photography exists — see spec.md §0.
+// Serves AVIF, WebP and a JPEG fallback per spec.md §10.3.
+interface Props {
+  basePath: string; // e.g. "/img/roll-1200-4x3" (no extension)
+  width: number;
+  height: number;
+  alt: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const {
+  basePath,
+  width,
+  height,
+  alt,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className,
+} = Astro.props;
+---
+<picture>
+  <source srcset={`${basePath}.avif`} type="image/avif" />
+  <source srcset={`${basePath}.webp`} type="image/webp" />
+  <img
+    src={`${basePath}.jpg`}
+    width={width}
+    height={height}
+    alt={alt}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class={className}
+  />
+</picture>

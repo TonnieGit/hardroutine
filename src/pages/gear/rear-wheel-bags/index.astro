@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import RegisterForm from '../../../components/RegisterForm.astro';
+import Schema from '../../../components/Schema.astro';
+import { site } from '../../../lib/site';
+import { getProductsByCategory } from '../../../lib/products';
+import { itemListSchema } from '../../../lib/schema';
+
+const productsInCategory = getProductsByCategory('rear-wheel-bags');
+---
+<BaseLayout
+  title="Rear Wheel Bags & Spare Tyre Dirty Gear Bags | Hard Routine"
+  description="Spare wheel bags for wet, muddy and filthy gear. Welded liner, real drainage, webbing that holds on corrugations. 60L and 90L. Australian designed. Launching early 2027."
+  path="/gear/rear-wheel-bags/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Gear', item: `${site.url}/gear/` },
+    { name: 'Rear Wheel Bags' },
+  ]} />
+  <Schema schema={itemListSchema(productsInCategory.map((p) => ({
+    name: p.name,
+    url: `${site.url}${p.categoryPath}${p.slug}/`,
+  })))} />
+
+  <section class="wrap section">
+    <div class="prose">
+      <h1>Rear wheel bags for everything you don't want inside</h1>
+      <p>
+        A spare wheel bag mounts on your rear-mounted spare and holds the
+        gear you don't want in the cabin — wet towels, muddy recovery gear,
+        firewood, rubbish.
+      </p>
+      <p class="mono-label size-line">DUMP 60 · DUMP 90 — launching {site.launchWindow}</p>
+    </div>
+
+    <div class="prose section-block">
+      <h2 id="what-goes-in-a-rear-wheel-bag">What goes in a rear wheel bag?</h2>
+      <p>Anything wet, dirty, sharp or smelly. In practice that's:</p>
+      <ul>
+        <li>Wet towels, swimmers and washing</li>
+        <li>Muddy recovery tracks, snatch straps and shackles after a recovery</li>
+        <li>Firewood, which drops bark and scratches interior trim</li>
+        <li>Rubbish, on tracks where you have to pack it out</li>
+        <li>Boots, thongs and anything else covered in sand</li>
+      </ul>
+      <p>
+        The point is separation. Keeping filth out of the same space as
+        bedding, food and clothing is the whole job.
+      </p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>Why do rear wheel bags fail?</h2>
+      <p>
+        We read every Australian review and forum thread we could find. The
+        complaints cluster on three things, and none of them is the fabric.
+      </p>
+      <p>
+        <strong>The straps.</strong> Attachment is the number one failure.
+        Owners report bags detaching at the top, inverting, and dragging
+        down the Birdsville Track. Others describe straps as "piddley" and
+        difficult to secure. We use 50 mm webbing with steel cam buckles and
+        four anchor points, not two.
+      </p>
+      <p>
+        <strong>The zip fills with dust.</strong> A fine-gauge zip on the
+        back of a vehicle on a dirt road will stop working. We use YKK #10
+        VISLON — a coarse moulded chain that sheds grit, under a full-length
+        storm flap.
+      </p>
+      <p>
+        <strong>It doesn't drain, or it drains flies in.</strong> Drainage
+        holes let water out and blowflies in. One owner described covering
+        his own drain holes with fly mesh after a maggot problem. Ours drain
+        through mesh-backed eyelets.
+      </p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>What size do I need?</h2>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Wheel bag sizing table">
+      <table>
+        <thead>
+          <tr><th scope="col">Capacity</th><th scope="col">Suits</th><th scope="col">Typical load</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DUMP 60</td><td>Most wagons and dual cabs</td><td>Rubbish and wet gear for a weekend</td></tr>
+          <tr><td>DUMP 90</td><td>Extended touring, families</td><td>Recovery tracks, firewood, a week's rubbish</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">
+      Both fit spare wheels from 16 to 18 inch with tyres up to 285 section
+      width. Measure your tyre's overall diameter if you're unsure — it's
+      printed on the sidewall.
+    </p>
+
+    <div class="prose section-block">
+      <h2>Specification</h2>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
+      <table>
+        <thead>
+          <tr><th scope="col"><span class="visually-hidden">Spec</span></th><th scope="col">DUMP 60</th><th scope="col">DUMP 90</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Capacity</th><td>60 L</td><td>90 L</td></tr>
+          <tr><th scope="row">Dimensions</th><td>550 × 600 × 180 mm</td><td>620 × 700 × 210 mm</td></tr>
+          <tr><th scope="row">Empty weight</th><td>1.3 kg</td><td>1.6 kg</td></tr>
+          <tr><th scope="row">Fabric</th><td colspan="2">500D PU-coated nylon oxford</td></tr>
+          <tr><th scope="row">Liner</th><td colspan="2">Welded TPU, removable, hoses out</td></tr>
+          <tr><th scope="row">Drainage</th><td>4 mesh-backed eyelets</td><td>6 mesh-backed eyelets</td></tr>
+          <tr><th scope="row">Zip</th><td colspan="2">YKK #10 VISLON, storm-flapped</td></tr>
+          <tr><th scope="row">Mounting</th><td colspan="2">50 mm webbing, 4 points, steel cam buckles</td></tr>
+          <tr><th scope="row">Fits</th><td colspan="2">16–18″ wheels, tyres to 285 section</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-grid section-block">
+      {productsInCategory.map((p) => <ProductCard product={p} />)}
+    </div>
+
+    <div class="section-block">
+      <RegisterForm />
+    </div>
+
+    <div class="prose section-block related">
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/field-notes/dirty-recovery-gear/">How to store recovery gear after you've actually used it</a></li>
+        <li><a href="/field-notes/dust-and-zips/">Why dust kills zips, and what to specify instead</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-block { margin-top: var(--space-5); }
+  .size-line { margin-top: var(--space-2); }
+  .product-grid {
+    display: grid;
+    gap: var(--space-3);
+  }
+  @media (min-width: 720px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .related ul { padding-left: 1.2em; margin-top: var(--space-1); }
+  .related li { margin-top: 0.4em; }
+  .section > .prose ul { padding-left: 1.2em; margin-top: var(--space-1); }
+  .section > .prose li { margin-top: 0.3em; }
+</style>

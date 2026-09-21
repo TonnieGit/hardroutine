@@ -1,0 +1,98 @@
+---
+// A defined image slot for cinematic/lifestyle photography that does not
+// exist yet (see hard-routine-design-brief.md §41-42). Until a real
+// `basePath` is supplied, this renders as a clearly-marked placeholder —
+// dark ground, thin rule, mono slot name — so it reads as "photography
+// pending" rather than a finished graphic. Swap in `basePath` later with
+// no markup change elsewhere.
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+  slotName: string;
+  alt?: string;
+  basePath?: string;
+  width?: number;
+  height?: number;
+  ratio?: string; // CSS aspect-ratio value, e.g. "16 / 9"
+  minHeight?: string; // overrides ratio-based sizing, e.g. "100svh"
+  fullBleed?: boolean;
+  class?: string;
+}
+
+const {
+  slotName,
+  alt = '',
+  basePath,
+  width = 1600,
+  height = 900,
+  ratio = '16 / 9',
+  minHeight,
+  fullBleed = false,
+  class: className,
+} = Astro.props;
+---
+<div
+  class:list={['image-slot', fullBleed && 'full-bleed', className]}
+  style={minHeight ? `min-height:${minHeight}` : `aspect-ratio:${ratio}`}
+>
+  {basePath ? (
+    <ResponsiveImage basePath={basePath} width={width} height={height} alt={alt} class="image-slot-media" />
+  ) : (
+    <div class="image-slot-placeholder" role={alt ? 'img' : undefined} aria-label={alt || undefined}>
+      <span class="mono-label image-slot-name">{slotName}</span>
+    </div>
+  )}
+  {Astro.slots.has('default') && (
+    <div class="image-slot-overlay">
+      <slot />
+    </div>
+  )}
+</div>
+
+<style>
+  .image-slot {
+    position: relative;
+    overflow: hidden;
+    background: var(--bitumen);
+  }
+  /* :global — .image-slot-media is applied to the <img> rendered inside the
+     child ResponsiveImage component, which Astro's scoped styles don't reach. */
+  :global(.image-slot-media) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .image-slot-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    border: 1px solid var(--line);
+    background:
+      repeating-linear-gradient(
+        135deg,
+        var(--char) 0px,
+        var(--char) 1px,
+        var(--bitumen) 1px,
+        var(--bitumen) 28px
+      );
+  }
+  .image-slot-name {
+    color: var(--lichen);
+  }
+  .image-slot-overlay {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-4) var(--space-3);
+  }
+  @media (min-width: 640px) {
+    .image-slot-overlay { padding: var(--space-5) var(--space-4); }
+  }
+</style>

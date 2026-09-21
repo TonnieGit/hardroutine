@@ -1,0 +1,55 @@
+:root {
+  /* Ground */
+  --bitumen:    #0A0B0A;  /* page background — near-black */
+  --char:       #1A1F1C;  /* raised surface */
+  --char-2:     #232924;  /* second surface */
+  --line:       #2F3630;  /* borders, rules */
+
+  /* Ink */
+  --bone:       #E8E4DA;  /* primary text — warm stencil white */
+  --bone-muted: #BDB9AE;  /* secondary bone — muted supporting text on dark/photo grounds */
+  --lichen:     #7E887B;  /* secondary text — eucalypt-biased grey */
+  --lichen-dim: #5D6A5A;  /* tertiary text, captions — 16px+ only */
+
+  /* Accent */
+  --brass:      #B5894E;  /* primary accent — hardware, links, emphasis */
+  --brass-dim:  #8A6837;  /* accent borders */
+  --flare:      #E2542A;  /* under 2% of any screen. CTAs only. */
+
+  /* Semantic — functional UI only, never decorative */
+  --ok:         #6E9D5E;
+  --warn:       #D19B2E;
+  --stop:       #C4472C;
+
+  /* Type */
+  --font-display: 'Big Shoulders Display', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Type scale */
+  --size-h1: clamp(40px, 9vw, 76px);
+  --size-h2: clamp(28px, 5.5vw, 46px);
+  --size-h3: clamp(20px, 3.4vw, 27px);
+
+  /* Monumental display scale — cinematic hero/section type, editorial use only */
+  --display-xl: clamp(72px, 12vw, 180px);
+  --display-lg: clamp(60px, 9vw, 140px);
+  --display-md: clamp(48px, 7vw, 100px);
+
+  --size-body: 17px;
+  --size-small: 14px;
+  --size-mono-label: 11px;
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* Layout */
+  --content-max: 1180px;
+  --prose-max: 68ch;
+  --radius: 2px;
+}

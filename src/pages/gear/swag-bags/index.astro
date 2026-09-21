@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import RegisterForm from '../../../components/RegisterForm.astro';
+import Schema from '../../../components/Schema.astro';
+import { site } from '../../../lib/site';
+import { getProductsByCategory } from '../../../lib/products';
+import { itemListSchema } from '../../../lib/schema';
+
+const productsInCategory = getProductsByCategory('swag-bags');
+---
+<BaseLayout
+  title="Replacement Swag Bags & Tent Bags | Hard Routine Australia"
+  description="Oversized replacement swag bags and tent bags built for wet pack-ups. Vented so damp canvas dries instead of going mouldy. Australian designed. Launching early 2027."
+  path="/gear/swag-bags/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Gear', item: `${site.url}/gear/` },
+    { name: 'Swag Bags' },
+  ]} />
+  <Schema schema={itemListSchema(productsInCategory.map((p) => ({
+    name: p.name,
+    url: `${site.url}${p.categoryPath}${p.slug}/`,
+  })))} />
+
+  <section class="wrap section">
+    <div class="prose">
+      <h1>Replacement swag bags, built for the wet pack-up</h1>
+      <p>
+        A swag transit bag is the sleeve your swag lives in between trips.
+        Ours are cut oversized and vented, so a wet swag can go in fast and
+        dry out instead of going mouldy.
+      </p>
+      <p class="mono-label size-line">ROLL 900 · ROLL 1200 · ROLL 1400 — launching {site.launchWindow}</p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>Why does the bag my swag came with keep failing?</h2>
+      <p>
+        Because it was designed to hold a factory-rolled swag, not a used
+        one. Three failures account for almost every complaint we found
+        across Australian product reviews:
+      </p>
+      <p>
+        <strong>It's cut to the minimum.</strong> A swag that's been slept
+        in, rained on and rolled in a hurry is larger than the one that left
+        the factory. Reviewers describe spending 45 minutes rolling, tearing
+        holes trying to force it in, and corners ripping on the first use.
+      </p>
+      <p>
+        <strong>The zip is too fine.</strong> Fine-gauge zips fill with grit
+        and stop running. Worse, they catch the canvas — the reported
+        outcome is a torn tent or a snapped pull, which writes off the whole
+        product.
+      </p>
+      <p>
+        <strong>It's waterproof but sealed.</strong> A damp swag zipped into
+        an unvented PVC sleeve cannot dry. That's the mould mechanism, and
+        it's why people find their gear ruined weeks later.
+      </p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>What size swag bag do I need?</h2>
+      <p>
+        Measure your swag's width when rolled, then add nothing — our
+        sizing already includes the allowance for a wet, loose roll.
+      </p>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Swag sizing table">
+      <table>
+        <thead>
+          <tr><th scope="col">Your swag</th><th scope="col">Hard Routine size</th><th scope="col">Bag internal Ø</th><th scope="col">Bag length</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Single, up to 900 mm</td><td>ROLL 900</td><td>380 mm</td><td>1,000 mm</td></tr>
+          <tr><td>Double, up to 1200 mm</td><td>ROLL 1200</td><td>450 mm</td><td>1,300 mm</td></tr>
+          <tr><td>King double, up to 1400 mm</td><td>ROLL 1400</td><td>500 mm</td><td>1,500 mm</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">
+      If your swag is between sizes, go up. There is no downside to a bag
+      that's slightly too big and a significant one to a bag that's
+      slightly too small.
+    </p>
+
+    <div class="prose section-block">
+      <h2>How do you stop a swag going mouldy in the bag?</h2>
+      <p>
+        Mould needs moisture and still air. A sealed bag traps both. Our
+        bags carry mesh vent panels at each end, set beneath a storm hood so
+        driven rain can't track in while water vapour can get out.
+      </p>
+      <p>
+        This reduces the risk. It does not eliminate it.
+        <strong>Nothing replaces drying your swag properly within a day or
+        two of packing it wet</strong> — if you pack a soaked swag and leave
+        it for a fortnight, it will mould in any bag on the market,
+        including ours. What a vented bag buys you is the drive home and a
+        few days' grace instead of a few hours.
+      </p>
+    </div>
+
+    <div class="prose section-block">
+      <h2>Specification</h2>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Specification table">
+      <table>
+        <thead>
+          <tr><th scope="col"><span class="visually-hidden">Spec</span></th><th scope="col">ROLL 900</th><th scope="col">ROLL 1200</th><th scope="col">ROLL 1400</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Internal diameter</th><td>380 mm</td><td>450 mm</td><td>500 mm</td></tr>
+          <tr><th scope="row">Internal length</th><td>1,000 mm</td><td>1,300 mm</td><td>1,500 mm</td></tr>
+          <tr><th scope="row">Capacity</th><td>113 L</td><td>207 L</td><td>295 L</td></tr>
+          <tr><th scope="row">Empty weight</th><td>0.9 kg</td><td>1.2 kg</td><td>1.4 kg</td></tr>
+          <tr><th scope="row">Fabric</th><td colspan="3">500D PU-coated nylon oxford</td></tr>
+          <tr><th scope="row">Zip</th><td colspan="3">YKK #10 VISLON, two-way</td></tr>
+          <tr><th scope="row">Vent panels</th><td>2</td><td>2</td><td>2</td></tr>
+          <tr><th scope="row">Webbing</th><td colspan="3">38 mm UV-stabilised polyester</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-grid section-block">
+      {productsInCategory.map((p) => <ProductCard product={p} />)}
+    </div>
+
+    <div class="section-block">
+      <RegisterForm />
+    </div>
+
+    <div class="prose section-block related">
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/field-notes/why-swag-bags-fail/">Why swag bags fail, and what to look for in a replacement</a></li>
+        <li><a href="/field-notes/packing-up-wet/">How to pack up a wet swag without ruining it</a></li>
+        <li><a href="/field-notes/mould-on-canvas/">Getting mould out of canvas — and stopping it coming back</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-block { margin-top: var(--space-5); }
+  .size-line { margin-top: var(--space-2); }
+  .product-grid {
+    display: grid;
+    gap: var(--space-3);
+  }
+  @media (min-width: 720px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .related ul { padding-left: 1.2em; margin-top: var(--space-1); }
+  .related li { margin-top: 0.4em; }
+</style>

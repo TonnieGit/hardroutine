@@ -1,0 +1,19 @@
+---
+// Small mono eyebrow label, e.g. "FIELD / 01". Formalises the .mono-label
+// pattern already used sitewide (see spec.md / base.css .mono-label).
+interface Props {
+  label: string;
+  index?: string;
+  class?: string;
+}
+const { label, index, class: className } = Astro.props;
+---
+<p class:list={['mono-label', 'section-label', className]}>
+  {index ? `${label} / ${index}` : label}
+</p>
+
+<style>
+  .section-label {
+    color: var(--brass);
+  }
+</style>

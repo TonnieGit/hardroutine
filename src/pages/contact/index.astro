@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../lib/site';
+---
+<BaseLayout
+  title="Contact Hard Routine"
+  description="Get in touch with Hard Routine — Australian blackout 4WD storage and camping gear. Email, phone and postal details."
+  path="/contact/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Contact' },
+  ]} />
+
+  <article class="wrap section prose">
+    <h1>Contact</h1>
+    <p class="not-prose contact-block">
+      <strong>Email</strong> — <a href={`mailto:${site.email}`}>{site.email}</a><br />
+      We answer within two business days.
+    </p>
+    <p class="not-prose contact-block">
+      <strong>Phone</strong> — <a href={`tel:${site.phoneSchema}`}>{site.phone}</a><br />
+      Monday to Friday, 9am–5pm AEST.
+    </p>
+    <p class="not-prose contact-block"><strong>Post</strong> — {site.postalAddress}</p>
+    <p class="not-prose contact-block"><strong>ABN</strong> — {site.abn}</p>
+
+    <h2>Trade and stockist enquiries</h2>
+    <p>
+      We're talking to retailers ahead of launch. If you run a 4WD or
+      camping store and want to see the range, email
+      <a href={`mailto:${site.email}`}>{site.email}</a> with your business
+      name and ABN.
+    </p>
+
+    <h2>Media</h2>
+    <p>
+      For product samples, imagery or interviews, email
+      <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .not-prose.contact-block { max-width: none; margin-top: var(--space-3); }
+</style>

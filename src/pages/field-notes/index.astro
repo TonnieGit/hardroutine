@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { site } from '../../lib/site';
+
+const entries = (await getCollection('field-notes')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title="Field Notes — 4WD Storage & Camping Gear Guides | Hard Routine"
+  description="Practical guides on camping gear storage — stopping mould in canvas, choosing a swag bag, storing dirty recovery gear, and why zips fail in Australian dust."
+  path="/field-notes/"
+>
+  <Breadcrumbs crumbs={[
+    { name: 'Home', item: `${site.url}/` },
+    { name: 'Field Notes' },
+  ]} />
+
+  <section class="wrap section">
+    <h1>Field Notes</h1>
+    <p class="prose intro">
+      Practical writing on gear storage, based on what actually fails. No
+      listicles, no affiliate roundups.
+    </p>
+
+    <div class="article-grid">
+      {entries.map((entry) => (
+        <a href={`/field-notes/${entry.id}/`} class="card article-card">
+          <div class="article-card-image">
+            <ResponsiveImage
+              basePath={`/img/field-notes/${entry.id}`}
+              width={600}
+              height={315}
+              alt=""
+              loading="lazy"
+            />
+          </div>
+          <div class="article-card-body">
+            <h2>{entry.data.title}</h2>
+            <p>{entry.data.standfirst}</p>
+            <p class="mono-label article-meta">
+              {entry.data.readingTime} read · {dateFmt(entry.data.publishDate)}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { margin-top: var(--space-2); }
+  .article-grid {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  @media (min-width: 720px) {
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .article-card {
+    text-decoration: none;
+    color: var(--bone);
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    transition: border-color 0.15s ease;
+  }
+  .article-card:hover { border-color: var(--brass); color: var(--bone); }
+  .article-card-image { line-height: 0; }
+  .article-card-image :global(img) { width: 100%; height: auto; }
+  .article-card-body { padding: var(--space-3); }
+  .article-card h2 { font-size: 22px; margin-bottom: var(--space-1); }
+  .article-card p:not(.mono-label) {
+    color: var(--lichen);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-meta { margin-top: var(--space-2); }
+</style>

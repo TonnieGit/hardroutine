@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /register/thanks/
+
+Sitemap: https://www.hardroutine.com.au/sitemap-index.xml
