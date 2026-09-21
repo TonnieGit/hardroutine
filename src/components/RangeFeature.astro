@@ -13,7 +13,8 @@ interface Spec {
 
 interface Props {
   index: string; // "02"
-  line: string; // "Haul"
+  line: string; // "Haul" — used for image slot naming, not necessarily displayed
+  headingLines?: string[]; // defaults to [line]; pass e.g. ['Haul', 'It'] to stack
   descriptor: string; // "DUFFLE BAGS / 40 · 70 · 100 L"
   href: string;
   linkLabel: string; // "Duffle bags →"
@@ -28,6 +29,7 @@ interface Props {
 const {
   index,
   line,
+  headingLines,
   descriptor,
   href,
   linkLabel,
@@ -52,7 +54,7 @@ const {
   <div class="wrap">
     <div class:list={['range-feature-inner', align === 'end' && 'align-end']}>
       <p class="mono-label range-feature-index">{index}</p>
-      <MegaHeading as="h3" size={headingSize} lines={[line]} />
+      <MegaHeading as="h3" size={headingSize} lines={headingLines ?? [line]} />
       <p class="mono-label range-feature-descriptor">{descriptor}</p>
       <p class="range-feature-copy"><slot /></p>
       {specs && specs.length > 0 && (
