@@ -279,16 +279,27 @@ import { site } from '../lib/site';
      above the hero image (independent of the header's own position). */
   .hero { padding-block: 0; }
   .hero-inner { max-width: 1300px; }
+  /* Pull the text block down off the horizon band, where the sky is bright
+     enough to wash out the heading, and closer to the bottom edge over the
+     darker ground/vehicle — :global reaches ImageSlot's own overlay, which
+     doesn't carry this page's scope attribute. */
+  .hero :global(.image-slot-overlay) {
+    padding-bottom: var(--space-2);
+  }
+  @media (min-width: 640px) {
+    .hero :global(.image-slot-overlay) {
+      padding-bottom: var(--space-3);
+    }
+  }
   /* :global — MegaHeading's font-size lives on the child component's own
      element, which this page's scoped styles can't reach without it.
      !important is needed because MegaHeading's own scoped `.mega-lg` rule
      resolves to the same specificity tier (two classes vs. one class plus
      Astro's scope attribute) — a plain override would silently lose the
-     cascade tie. The headline is the primary visual object on the page: it
-     is allowed to push the hero taller than one viewport (see brief §5/§10)
-     rather than being shrunk to fit above the fold. */
+     cascade tie. Sized ~20% down from the initial monumental pass, which
+     read too large and let the top line reach into the bright horizon. */
   :global(.hero-heading) {
-    font-size: clamp(58px, 11vw, 176px) !important;
+    font-size: clamp(46px, 8.8vw, 140px) !important;
   }
   .lede {
     margin-top: var(--space-4);
