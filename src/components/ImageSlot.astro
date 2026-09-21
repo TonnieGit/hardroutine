@@ -96,16 +96,21 @@ const {
     color: var(--lichen);
   }
   .image-slot-overlay {
-    position: relative;
+    /* absolute + inset:0, not height:100% — the parent is sized by
+       min-height/aspect-ratio, not a definite height, so a percentage
+       height here would resolve against its own content instead of the
+       full image and collapse to just the text band, cutting the scrim
+       off hard partway up the photo. */
+    position: absolute;
+    inset: 0;
     z-index: 1;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: var(--space-4) var(--space-3);
   }
-  /* Scrim behind overlay text only — text always sits at the bottom edge,
-     so only that band needs contrast help against a real photo. */
+  /* Scrim across the full image, not just behind the text — gentle at the
+     top, darkening toward the bottom edge where the text sits. */
   .image-slot-overlay::before {
     content: '';
     position: absolute;
@@ -113,9 +118,10 @@ const {
     z-index: -1;
     background: linear-gradient(
       to top,
-      rgba(10, 11, 10, 0.8) 0%,
-      rgba(10, 11, 10, 0.55) 45%,
-      rgba(10, 11, 10, 0.3) 100%
+      rgba(10, 11, 10, 0.85) 0%,
+      rgba(10, 11, 10, 0.45) 40%,
+      rgba(10, 11, 10, 0.05) 75%,
+      rgba(10, 11, 10, 0) 100%
     );
   }
   @media (min-width: 640px) {
