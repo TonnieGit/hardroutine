@@ -1,4 +1,9 @@
 ---
+interface Props {
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
 const nav = [
   { label: 'Gear', href: '/gear/' },
   { label: 'The Fabric', href: '/the-fabric/' },
@@ -7,7 +12,7 @@ const nav = [
 ];
 const currentPath = Astro.url.pathname;
 ---
-<header class="site-header">
+<header class:list={['site-header', transparent && 'site-header-transparent']}>
   <div class="wrap site-header-inner">
     <a href="/" class="wordmark">Hard Routine</a>
 
@@ -45,6 +50,19 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
+{transparent && (
+  <script>
+    const header = document.querySelector('.site-header');
+    if (header) {
+      const onScroll = () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 24);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  </script>
+)}
+
 <style>
   .site-header {
     border-bottom: 1px solid var(--line);
@@ -52,6 +70,35 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 50;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+  /* Homepage only — the hero image runs to the very top of the page
+     behind a transparent header, which turns solid once the user scrolls
+     past it. position:fixed (not sticky) so the header takes no layout
+     space and the hero fills the full viewport from y:0. */
+  .site-header-transparent {
+    position: fixed;
+    inset-inline: 0;
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .site-header-transparent::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, rgba(10, 11, 10, 0.65), rgba(10, 11, 10, 0));
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+  }
+  .site-header-transparent.is-scrolled {
+    background: var(--bitumen);
+    border-bottom-color: var(--line);
+  }
+  .site-header-transparent.is-scrolled::before {
+    opacity: 0;
   }
   .site-header-inner {
     display: flex;
