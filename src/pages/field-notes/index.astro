@@ -3,11 +3,14 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
 import { site } from '../../lib/site';
 
 const entries = (await getCollection('field-notes')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+const [featured, ...rest] = entries;
 const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <BaseLayout
@@ -20,67 +23,115 @@ const dateFmt = (d: Date) => d.toLocaleDateString('en-AU', { day: 'numeric', mon
     { name: 'Field Notes' },
   ]} />
 
-  <section class="wrap section">
-    <h1>Field Notes</h1>
-    <p class="prose intro">
-      Practical writing on gear storage, based on what actually fails. No
-      listicles, no affiliate roundups.
-    </p>
-
-    <div class="article-grid">
-      {entries.map((entry) => (
-        <a href={`/field-notes/${entry.id}/`} class="card article-card">
-          <div class="article-card-image">
-            <ResponsiveImage
-              basePath={`/img/field-notes/${entry.id}`}
-              width={600}
-              height={315}
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div class="article-card-body">
-            <h2>{entry.data.title}</h2>
-            <p>{entry.data.standfirst}</p>
-            <p class="mono-label article-meta">
-              {entry.data.readingTime} read · {dateFmt(entry.data.publishDate)}
-            </p>
-          </div>
-        </a>
-      ))}
+  <section class="section-black field-notes-intro">
+    <div class="wrap">
+      <SectionLabel label="FIELD NOTES" index="00" />
+      <h1>Field Notes</h1>
+      <p class="prose intro">
+        Practical writing on gear storage, based on what actually fails. No
+        listicles, no affiliate roundups.
+      </p>
     </div>
   </section>
+
+  {featured && (
+    <div class="wrap">
+      <a href={`/field-notes/${featured.id}/`} class="featured-article">
+        <div class="featured-image">
+          <ResponsiveImage
+            basePath={`/img/field-notes/${featured.id}`}
+            width={1200}
+            height={630}
+            alt=""
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="featured-body">
+          <p class="mono-label featured-index">FIELD NOTES / 01</p>
+          <MegaHeading as="h2" size="md" lines={[featured.data.title]} />
+          <p class="featured-standfirst">{featured.data.standfirst}</p>
+          <p class="mono-label article-meta">
+            {featured.data.readingTime} read · {dateFmt(featured.data.publishDate)}
+          </p>
+          <span class="btn btn-ghost">Read field note →</span>
+        </div>
+      </a>
+    </div>
+  )}
+
+  <div class="wrap">
+    <ul class="article-list">
+      {rest.map((entry) => (
+        <li>
+          <a href={`/field-notes/${entry.id}/`} class="article-row">
+            <div class="article-row-image">
+              <ResponsiveImage
+                basePath={`/img/field-notes/${entry.id}`}
+                width={600}
+                height={315}
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div class="article-row-body">
+              <h2>{entry.data.title}</h2>
+              <p class="standfirst">{entry.data.standfirst}</p>
+              <p class="mono-label article-meta">
+                {entry.data.readingTime} read · {dateFmt(entry.data.publishDate)}
+              </p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </BaseLayout>
 
 <style>
-  .intro { margin-top: var(--space-2); }
-  .article-grid {
-    display: grid;
-    gap: var(--space-3);
-    margin-top: var(--space-4);
-  }
-  @media (min-width: 720px) {
-    .article-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  .article-card {
+  .field-notes-intro { padding-block: var(--space-6) var(--space-4); }
+  .intro { margin-top: var(--space-3); font-size: 18px; color: var(--bone-muted); }
+
+  .featured-article {
+    display: block;
     text-decoration: none;
     color: var(--bone);
-    display: block;
-    overflow: hidden;
-    padding: 0;
-    transition: border-color 0.15s ease;
+    margin-block: var(--space-5);
   }
-  .article-card:hover { border-color: var(--brass); color: var(--bone); }
-  .article-card-image { line-height: 0; }
-  .article-card-image :global(img) { width: 100%; height: auto; }
-  .article-card-body { padding: var(--space-3); }
-  .article-card h2 { font-size: 22px; margin-bottom: var(--space-1); }
-  .article-card p:not(.mono-label) {
-    color: var(--lichen);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  .featured-index { color: var(--brass); }
+  .featured-image { line-height: 0; }
+  .featured-image :global(img) { width: 100%; height: auto; display: block; }
+  .featured-body { margin-top: var(--space-3); }
+  .featured-body :global(.mega-heading) { margin-top: var(--space-1); }
+  .featured-standfirst {
+    margin-top: var(--space-2);
+    max-width: 60ch;
+    font-size: 18px;
+    color: var(--bone-muted);
   }
   .article-meta { margin-top: var(--space-2); }
+  .featured-article .btn { margin-top: var(--space-3); pointer-events: none; }
+
+  .article-list {
+    list-style: none;
+    padding: 0;
+    margin-block: var(--space-6);
+  }
+  .article-row {
+    display: grid;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--bone);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .article-list li:last-child .article-row { border-bottom: 1px solid var(--line); }
+  @media (min-width: 640px) {
+    .article-row { grid-template-columns: 240px 1fr; align-items: center; }
+  }
+  .article-row-image { line-height: 0; }
+  .article-row-image :global(img) { width: 100%; height: auto; display: block; }
+  .article-row h2 { font-size: 24px; }
+  .article-row:hover h2 { color: var(--brass); }
+  .standfirst { margin-top: var(--space-1); color: var(--lichen); }
 </style>

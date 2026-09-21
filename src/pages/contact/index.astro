@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -13,19 +15,33 @@ import { site } from '../../lib/site';
     { name: 'Contact' },
   ]} />
 
-  <article class="wrap section prose">
-    <h1>Contact</h1>
-    <p class="not-prose contact-block">
-      <strong>Email</strong> — <a href={`mailto:${site.email}`}>{site.email}</a><br />
-      We answer within two business days.
-    </p>
-    <p class="not-prose contact-block">
-      <strong>Phone</strong> — <a href={`tel:${site.phoneSchema}`}>{site.phone}</a><br />
-      Monday to Friday, 9am–5pm AEST.
-    </p>
-    <p class="not-prose contact-block"><strong>Post</strong> — {site.postalAddress}</p>
-    <p class="not-prose contact-block"><strong>ABN</strong> — {site.abn}</p>
+  <section class="section-black contact-hero">
+    <div class="wrap">
+      <SectionLabel label="BRAND" index="00" />
+      <MegaHeading as="h1" size="md" lines={['Contact']} />
 
+      <dl class="contact-details not-prose">
+        <div>
+          <dt>Email</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a><br /><span class="text-lichen small">We answer within two business days.</span></dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd><a href={`tel:${site.phoneSchema}`}>{site.phone}</a><br /><span class="text-lichen small">Monday to Friday, 9am–5pm AEST.</span></dd>
+        </div>
+        <div>
+          <dt>Post</dt>
+          <dd>{site.postalAddress}</dd>
+        </div>
+        <div>
+          <dt>ABN</dt>
+          <dd>{site.abn}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <article class="wrap section prose">
     <h2>Trade and stockist enquiries</h2>
     <p>
       We're talking to retailers ahead of launch. If you run a 4WD or
@@ -43,5 +59,28 @@ import { site } from '../../lib/site';
 </BaseLayout>
 
 <style>
-  .not-prose.contact-block { max-width: none; margin-top: var(--space-3); }
+  .contact-hero { padding-block: var(--space-6); }
+  .not-prose { max-width: none; }
+  .contact-details {
+    margin-top: var(--space-4);
+    display: grid;
+    gap: var(--space-3);
+    max-width: 640px;
+  }
+  .contact-details > div {
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
+  }
+  .contact-details dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .contact-details dd {
+    margin-top: 0.4em;
+    font-size: var(--size-body);
+  }
+  .contact-details .small { font-size: var(--size-small); }
 </style>

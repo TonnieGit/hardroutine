@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RegisterForm from '../../components/RegisterForm.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -16,8 +18,9 @@ import { site } from '../../lib/site';
 
   <article class="wrap section">
     <div class="prose">
-      <h1>Be first when we launch</h1>
-      <p>
+      <SectionLabel label="LAUNCH" index={site.launchWindow.toUpperCase()} />
+      <MegaHeading as="h1" size="md" lines={['Be first', 'when we launch']} />
+      <p class="lede">
         The first range lands in {site.launchWindow}. Register below and
         you'll hear before anyone else — what's in it, what it costs, and
         when it's available.
@@ -47,4 +50,6 @@ import { site } from '../../lib/site';
 
 <style>
   .section-block { margin-top: var(--space-5); }
+  .prose :global(.mega-heading) { margin-top: var(--space-2); }
+  .lede { font-size: 18px; color: var(--bone-muted); }
 </style>

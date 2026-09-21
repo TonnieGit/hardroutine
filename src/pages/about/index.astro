@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -13,15 +15,20 @@ import { site } from '../../lib/site';
     { name: 'About' },
   ]} />
 
-  <article class="wrap section prose">
-    <h1>About Hard Routine</h1>
-    <p>
-      <strong>Hard Routine is an Australian brand making blackout storage
-      and gear bags for 4WD touring and camping.</strong> We're based in
-      Brisbane, Queensland, and we started in 2026. Our first range — swag
-      transit bags, duffles and rear wheel bags — launches in {site.launchWindow}.
-    </p>
+  <section class="section-black about-hero">
+    <div class="wrap">
+      <SectionLabel label="BRAND" index="00" />
+      <MegaHeading as="h1" size="md" lines={['About', 'Hard Routine']} />
+      <p class="prose lede">
+        <strong>Hard Routine is an Australian brand making blackout storage
+        and gear bags for 4WD touring and camping.</strong> We're based in
+        Brisbane, Queensland, and we started in 2026. Our first range — swag
+        transit bags, duffles and rear wheel bags — launches in {site.launchWindow}.
+      </p>
+    </div>
+  </section>
 
+  <article class="wrap section prose about-body">
     <h2>What "hard routine" means</h2>
     <p>
       Hard routine is a term from the Australian and British Army. It means
@@ -54,16 +61,28 @@ import { site } from '../../lib/site';
     </p>
 
     <h2>How we design</h2>
-    <p>
+    <p class="not-prose">
       We start from the complaint, not the category. Every design decision
       in the first range traces to a specific documented failure:
     </p>
-    <ul>
-      <li>Bags are <strong>cut oversized</strong> because "doesn't fit unless you spend 45 minutes rolling" is the most common complaint in Australian swag reviews.</li>
-      <li>We use <strong>YKK #10 VISLON</strong> because owners report fine-gauge zips filling with dust and catching the fabric they're protecting.</li>
-      <li>Swag bags are <strong>vented</strong> because a sealed waterproof sleeve is a mould incubator.</li>
-      <li>Rear wheel bags use <strong>50 mm webbing across four anchor points</strong> because attachment is the number one reported failure in that category.</li>
-    </ul>
+    <ol class="design-list not-prose">
+      <li>
+        <span class="mono-label design-index">01</span>
+        <span>Bags are <strong>cut oversized</strong> because "doesn't fit unless you spend 45 minutes rolling" is the most common complaint in Australian swag reviews.</span>
+      </li>
+      <li>
+        <span class="mono-label design-index">02</span>
+        <span>We use <strong>YKK #10 VISLON</strong> because owners report fine-gauge zips filling with dust and catching the fabric they're protecting.</span>
+      </li>
+      <li>
+        <span class="mono-label design-index">03</span>
+        <span>Swag bags are <strong>vented</strong> because a sealed waterproof sleeve is a mould incubator.</span>
+      </li>
+      <li>
+        <span class="mono-label design-index">04</span>
+        <span>Rear wheel bags use <strong>50 mm webbing across four anchor points</strong> because attachment is the number one reported failure in that category.</span>
+      </li>
+    </ol>
 
     <h2>What we won't do</h2>
     <p>
@@ -87,5 +106,25 @@ import { site } from '../../lib/site';
 </BaseLayout>
 
 <style>
-  .not-prose.contact-block { max-width: none; line-height: 1.8; }
+  .about-hero { padding-block: var(--space-6); }
+  .lede { margin-top: var(--space-4); max-width: 60ch; font-size: 19px; color: var(--bone-muted); }
+  .about-body h2 { margin-top: var(--space-6); }
+
+  .not-prose { max-width: none; }
+  .design-list {
+    margin-top: var(--space-2);
+    list-style: none;
+    padding: 0;
+  }
+  .design-list li {
+    display: flex;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    border-top: 1px solid var(--line);
+    max-width: var(--prose-max);
+  }
+  .design-list li:last-child { border-bottom: 1px solid var(--line); }
+  .design-index { color: var(--brass); flex-shrink: 0; }
+
+  .contact-block { line-height: 1.8; }
 </style>

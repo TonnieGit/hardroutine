@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import MegaHeading from '../../components/MegaHeading.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -13,9 +16,24 @@ import { site } from '../../lib/site';
     { name: 'The Fabric' },
   ]} />
 
+  <ImageSlot
+    slotName="DETAIL-FABRIC-MACRO"
+    basePath="/img/detail-fabric-macro"
+    width={1200}
+    height={896}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="fabric-hero"
+  >
+    <div class="wrap">
+      <SectionLabel label="MATERIAL" index="00" light />
+      <MegaHeading as="h1" size="lg" lines={['One fabric,', 'chosen for a reason']} />
+    </div>
+  </ImageSlot>
+
   <article class="wrap section prose">
-    <h1>One fabric, chosen for a reason</h1>
-    <p>
+    <p class="lede">
       Every Hard Routine product is made from the same material:
       <strong>500D PU-coated nylon oxford</strong>, printed with a
       topographic contour pattern, in blackout. Here's how we got there and
@@ -156,4 +174,5 @@ import { site } from '../../lib/site';
 
 <style>
   .not-prose { max-width: none; margin-top: var(--space-2); }
+  .lede { font-size: 19px; color: var(--bone-muted); }
 </style>
