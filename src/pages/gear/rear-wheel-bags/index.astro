@@ -150,7 +150,31 @@ const productsInCategory = getProductsByCategory('rear-wheel-bags');
         {productsInCategory.map((p) => <ProductCard product={p} />)}
       </div>
     </div>
+  </section>
 
+  <section class="section-black momentum-break">
+    <div class="wrap">
+      <SectionLabel label="FIELD" index="05" />
+      <MegaHeading as="h2" size="md" class="momentum-heading" lines={['Keep the filth', 'outside the cabin.']} />
+    </div>
+  </section>
+
+  <ImageSlot
+    slotName="LIFESTYLE-DUMP-TRACK-CLOSE"
+    basePath="/img/hero-4wd-camp-dusk"
+    width={1376}
+    height={768}
+    alt=""
+    minHeight="75svh"
+    fullBleed
+    class="category-lifestyle"
+  >
+    <div class="wrap">
+      <MegaHeading as="h2" size="md" lines={['Out here,', 'it holds.']} />
+    </div>
+  </ImageSlot>
+
+  <section class="section-black">
     <div class="wrap section-block">
       <RegisterForm />
     </div>
@@ -210,4 +234,7 @@ const productsInCategory = getProductsByCategory('rear-wheel-bags');
 
   .related ul { padding-left: 1.2em; margin-top: var(--space-1); }
   .related li { margin-top: 0.4em; }
+
+  .momentum-break { padding-block: var(--space-7); }
+  .momentum-heading { margin-top: var(--space-3); }
 </style>

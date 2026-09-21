@@ -76,6 +76,22 @@ const {
     height: 100%;
     object-fit: cover;
   }
+  /* Edge vignette — always present, independent of the text scrim below,
+     so every photo (not just ones carrying an overlay) reads darker and
+     more contained at the frame edges instead of flat/bright corner to
+     corner. Sits above the image, below the text overlay (z-index 2). */
+  .image-slot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      120% 120% at 50% 45%,
+      rgba(10, 11, 10, 0) 45%,
+      rgba(10, 11, 10, 0.5) 100%
+    );
+  }
   .image-slot-placeholder {
     position: absolute;
     inset: 0;
@@ -103,14 +119,15 @@ const {
        off hard partway up the photo. */
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: var(--space-4) var(--space-3);
   }
   /* Scrim across the full image, not just behind the text — gentle at the
-     top, darkening toward the bottom edge where the text sits. */
+     top, darkening hard toward the bottom edge where the text sits, for a
+     harder-contrast, grittier read than a soft editorial fade. */
   .image-slot-overlay::before {
     content: '';
     position: absolute;
@@ -118,10 +135,10 @@ const {
     z-index: -1;
     background: linear-gradient(
       to top,
-      rgba(10, 11, 10, 0.85) 0%,
-      rgba(10, 11, 10, 0.45) 40%,
-      rgba(10, 11, 10, 0.05) 75%,
-      rgba(10, 11, 10, 0) 100%
+      rgba(10, 11, 10, 0.94) 0%,
+      rgba(10, 11, 10, 0.6) 32%,
+      rgba(10, 11, 10, 0.18) 62%,
+      rgba(10, 11, 10, 0.02) 100%
     );
   }
   @media (min-width: 640px) {

@@ -6,7 +6,7 @@ import SectionLabel from '../components/SectionLabel.astro';
 import MegaHeading from '../components/MegaHeading.astro';
 import ImageSlot from '../components/ImageSlot.astro';
 import TechnicalCallout from '../components/TechnicalCallout.astro';
-import ProductSystem from '../components/ProductSystem.astro';
+import RangeFeature from '../components/RangeFeature.astro';
 import { organizationSchema, websiteSchema } from '../lib/schema';
 import { site } from '../lib/site';
 ---
@@ -150,54 +150,40 @@ import { site } from '../lib/site';
       </div>
     </ImageSlot>
 
-    <!-- HAUL — asymmetric overlap -->
-    <div class="wrap">
-      <ProductSystem
-        line="HAUL"
-        index="02"
-        descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
-        href="/gear/duffle-bags/"
-        linkLabel="Duffle bags →"
-        imageBasePath="/img/haul-feature-loadup"
-        imageAlt=""
-        variant="image-left"
-      >
-        A touring duffle in coated technical nylon, not cotton canvas.
-        Doesn't hold water, doesn't mildew, doesn't weigh four kilos before
-        you put anything in it.
-      </ProductSystem>
-    </div>
+    <!-- HAUL — full-bleed, mirrored -->
+    <RangeFeature
+      index="02"
+      line="Haul"
+      descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
+      href="/gear/duffle-bags/"
+      linkLabel="Duffle bags →"
+      imageBasePath="/img/haul-feature-loadup"
+      minHeight="85svh"
+      align="end"
+    >
+      A touring duffle in coated technical nylon, not cotton canvas.
+      Doesn't hold water, doesn't mildew, doesn't weigh four kilos before
+      you put anything in it.
+    </RangeFeature>
 
-    <!-- DUMP — technical strip -->
-    <div class="wrap range-dump">
-      <div class="range-dump-grid">
-        <div class="range-dump-text">
-          <p class="mono-label range-index">03</p>
-          <MegaHeading as="h3" size="md" lines={['Dump']} />
-          <p class="mono-label range-dump-descriptor">REAR WHEEL BAGS / 60 · 90 L</p>
-          <p class="range-dump-copy">
-            For everything you don't want inside the vehicle. Wet towels, muddy
-            recovery gear, firewood, rubbish. Welded liner, drains properly,
-            webbing that won't let go on the Birdsville Track.
-          </p>
-          <dl class="range-dump-specs">
-            <div><dt>SHELL</dt><dd>Welded liner</dd></div>
-            <div><dt>DRAINAGE</dt><dd>Drains properly</dd></div>
-            <div><dt>WEBBING</dt><dd>Won't let go on the Birdsville Track</dd></div>
-          </dl>
-          <a href="/gear/rear-wheel-bags/" class="btn btn-ghost">Rear wheel bags →</a>
-        </div>
-        <ImageSlot
-          slotName="PRODUCT-DUMP-STUDIO"
-          basePath="/img/dump-feature-spare"
-          width={1376}
-          height={768}
-          alt=""
-          ratio="4 / 3"
-          class="range-dump-image"
-        />
-      </div>
-    </div>
+    <!-- DUMP — full-bleed, technical strip overlaid -->
+    <RangeFeature
+      index="03"
+      line="Dump"
+      descriptor="REAR WHEEL BAGS / 60 · 90 L"
+      href="/gear/rear-wheel-bags/"
+      linkLabel="Rear wheel bags →"
+      imageBasePath="/img/dump-feature-spare"
+      minHeight="80svh"
+      specs={[
+        { label: 'SHELL', value: 'Welded liner' },
+        { label: 'DRAINAGE', value: 'Drains properly' },
+        { label: 'WEBBING', value: "Won't let go on the Birdsville Track" },
+      ]}
+    >
+      For everything you don't want inside the vehicle. Wet towels, muddy
+      recovery gear, firewood, rubbish.
+    </RangeFeature>
   </section>
 
   <!-- 05 — MOMENTUM BREAK (black, pure type, no image) -->
@@ -388,50 +374,6 @@ import { site } from '../lib/site';
     color: var(--bone-muted);
   }
   .range-roll a.btn { margin-top: var(--space-3); }
-
-  /* DUMP */
-  .range-dump { padding-block: var(--space-6); }
-  .range-dump-grid {
-    display: grid;
-    gap: var(--space-4);
-  }
-  @media (min-width: 860px) {
-    .range-dump-grid {
-      grid-template-columns: 5fr 7fr;
-      align-items: center;
-      gap: var(--space-5);
-    }
-  }
-  .range-dump-descriptor {
-    margin-top: var(--space-1);
-    color: var(--brass);
-  }
-  .range-dump-copy {
-    margin-top: var(--space-2);
-    color: var(--bone-muted);
-    max-width: 42ch;
-  }
-  .range-dump-specs {
-    margin-top: var(--space-3);
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--line);
-    display: grid;
-    gap: var(--space-1);
-  }
-  .range-dump-specs dt {
-    display: inline;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--lichen);
-  }
-  .range-dump-specs dd {
-    display: inline;
-    margin-left: 0.6em;
-    font-size: var(--size-small);
-    color: var(--bone-muted);
-  }
-  .range-dump-text .btn { margin-top: var(--space-3); }
 
   /* 05 — Momentum break */
   .momentum-break { padding-block: var(--space-7); }

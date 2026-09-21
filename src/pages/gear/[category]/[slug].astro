@@ -134,6 +134,21 @@ const lifestyleStatement = lifestyleStatementByLine[product.line];
     </ImageSlot>
   )}
 
+  <ImageSlot
+    slotName={`LIFESTYLE-${product.line}-VEHICLE`}
+    basePath="/img/hero-4wd-camp-dusk"
+    width={1376}
+    height={768}
+    alt=""
+    minHeight="70svh"
+    fullBleed
+    class="product-final-lifestyle"
+  >
+    <div class="wrap">
+      <MegaHeading as="h2" size="md" lines={['See you', 'out there.']} />
+    </div>
+  </ImageSlot>
+
   <article class="wrap section product-page">
     <div class="section-block" id="register">
       <RegisterForm heading={`Register interest in the ${product.line} ${product.size}`} />

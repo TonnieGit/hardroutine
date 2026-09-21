@@ -4,7 +4,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import MegaHeading from '../../components/MegaHeading.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
-import ProductSystem from '../../components/ProductSystem.astro';
+import RangeFeature from '../../components/RangeFeature.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -45,44 +45,44 @@ import { site } from '../../lib/site';
     </div>
   </section>
 
-  <div class="wrap">
-    <ProductSystem
-      line="ROLL"
-      index="01"
-      descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
-      href="/gear/swag-bags/"
-      linkLabel="Swag bags →"
-      imageBasePath="/img/roll-feature-loadup"
-      variant="image-left"
-    >
-      Oversized, vented swag transit bags in three sizes. Cut for a wet swag
-      rolled badly, not a dry one rolled well.
-    </ProductSystem>
-    <ProductSystem
-      line="HAUL"
-      index="02"
-      descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
-      href="/gear/duffle-bags/"
-      linkLabel="Duffle bags →"
-      imageBasePath="/img/haul-feature-loadup"
-      variant="image-right"
-    >
-      Touring duffles in coated technical nylon. Lighter than canvas, water
-      resistant, won't mildew.
-    </ProductSystem>
-    <ProductSystem
-      line="DUMP"
-      index="03"
-      descriptor="REAR WHEEL BAGS / 60 · 90 L"
-      href="/gear/rear-wheel-bags/"
-      linkLabel="Rear wheel bags →"
-      imageBasePath="/img/dump-feature-spare"
-      variant="image-left"
-    >
-      Welded-liner spare wheel bags for the gear you don't want inside the
-      vehicle. Real drainage, webbing that holds.
-    </ProductSystem>
-  </div>
+  <RangeFeature
+    index="01"
+    line="Roll"
+    descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
+    href="/gear/swag-bags/"
+    linkLabel="Swag bags →"
+    imageBasePath="/img/roll-feature-loadup"
+    minHeight="90svh"
+    headingSize="xl"
+  >
+    Oversized, vented swag transit bags in three sizes. Cut for a wet swag
+    rolled badly, not a dry one rolled well.
+  </RangeFeature>
+  <RangeFeature
+    index="02"
+    line="Haul"
+    descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
+    href="/gear/duffle-bags/"
+    linkLabel="Duffle bags →"
+    imageBasePath="/img/haul-feature-loadup"
+    minHeight="85svh"
+    align="end"
+  >
+    Touring duffles in coated technical nylon. Lighter than canvas, water
+    resistant, won't mildew.
+  </RangeFeature>
+  <RangeFeature
+    index="03"
+    line="Dump"
+    descriptor="REAR WHEEL BAGS / 60 · 90 L"
+    href="/gear/rear-wheel-bags/"
+    linkLabel="Rear wheel bags →"
+    imageBasePath="/img/dump-feature-spare"
+    minHeight="80svh"
+  >
+    Welded-liner spare wheel bags for the gear you don't want inside the
+    vehicle. Real drainage, webbing that holds.
+  </RangeFeature>
 </BaseLayout>
 
 <style>

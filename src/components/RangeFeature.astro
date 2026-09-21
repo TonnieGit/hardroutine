@@ -1,0 +1,114 @@
+---
+// Full-bleed cinematic product/range feature — the "world is the hero"
+// treatment from hard-routine-design-brief.md §10/§16/§21, replacing the
+// boxed image + text split ProductSystem used. Text sits directly over
+// the image at the frame edge rather than beside it in a contained grid.
+import MegaHeading from './MegaHeading.astro';
+import ImageSlot from './ImageSlot.astro';
+
+interface Spec {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  index: string; // "02"
+  line: string; // "Haul"
+  descriptor: string; // "DUFFLE BAGS / 40 · 70 · 100 L"
+  href: string;
+  linkLabel: string; // "Duffle bags →"
+  imageBasePath?: string;
+  imageAlt?: string;
+  minHeight?: string;
+  align?: 'start' | 'end';
+  headingSize?: 'md' | 'lg' | 'xl';
+  specs?: Spec[];
+}
+
+const {
+  index,
+  line,
+  descriptor,
+  href,
+  linkLabel,
+  imageBasePath,
+  imageAlt = '',
+  minHeight = '85svh',
+  align = 'start',
+  headingSize = 'lg',
+  specs,
+} = Astro.props;
+---
+<ImageSlot
+  slotName={`PRODUCT-${line.toUpperCase()}-FIELD`}
+  basePath={imageBasePath}
+  width={1600}
+  height={1000}
+  alt={imageAlt}
+  minHeight={minHeight}
+  fullBleed
+  class="range-feature"
+>
+  <div class="wrap">
+    <div class:list={['range-feature-inner', align === 'end' && 'align-end']}>
+      <p class="mono-label range-feature-index">{index}</p>
+      <MegaHeading as="h3" size={headingSize} lines={[line]} />
+      <p class="mono-label range-feature-descriptor">{descriptor}</p>
+      <p class="range-feature-copy"><slot /></p>
+      {specs && specs.length > 0 && (
+        <dl class="range-feature-specs">
+          {specs.map((s) => (
+            <div><dt>{s.label}</dt><dd>{s.value}</dd></div>
+          ))}
+        </dl>
+      )}
+      <a href={href} class="btn btn-ghost">{linkLabel}</a>
+    </div>
+  </div>
+</ImageSlot>
+
+<style>
+  .range-feature-inner { max-width: 640px; }
+  .range-feature-index { color: var(--brass); }
+  .range-feature-descriptor {
+    margin-top: var(--space-2);
+    color: var(--bone);
+  }
+  .range-feature-copy {
+    margin-top: var(--space-2);
+    max-width: 46ch;
+    color: var(--bone-muted);
+  }
+  .range-feature-inner .btn { margin-top: var(--space-3); }
+
+  .range-feature-specs {
+    margin-top: var(--space-3);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: var(--space-1);
+  }
+  .range-feature-specs dt {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--lichen);
+  }
+  .range-feature-specs dd {
+    display: inline;
+    margin-left: 0.6em;
+    font-size: var(--size-small);
+    color: var(--bone-muted);
+  }
+
+  @media (min-width: 860px) {
+    .align-end {
+      margin-inline-start: auto;
+      text-align: right;
+    }
+    .align-end .range-feature-copy { margin-inline-start: auto; }
+    .align-end .range-feature-specs { text-align: left; }
+    .align-end .btn { margin-inline-start: auto; }
+  }
+</style>
