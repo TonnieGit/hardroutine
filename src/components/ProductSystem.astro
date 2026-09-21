@@ -11,8 +11,10 @@ interface Props {
   descriptor: string; // "SWAG TRANSIT / 900 · 1200 · 1400 MM"
   href: string;
   linkLabel: string; // "Explore ROLL →"
-  imageBasePath: string; // "/img/roll-1200-4x3"
-  imageAlt: string;
+  imageBasePath?: string; // "/img/roll-1200-4x3" — omit to show a pending-photography slot
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   variant?: 'image-left' | 'image-right';
 }
 const {
@@ -21,7 +23,9 @@ const {
   href,
   linkLabel,
   imageBasePath,
-  imageAlt,
+  imageAlt = '',
+  imageWidth = 800,
+  imageHeight = 600,
   variant = 'image-left',
 } = Astro.props;
 ---
@@ -32,8 +36,8 @@ const {
     alt={imageAlt}
     ratio="4 / 3"
     class="product-system-image"
-    width={800}
-    height={600}
+    width={imageWidth}
+    height={imageHeight}
   />
   <div class="product-system-body">
     <MegaHeading lines={[line]} size="md" as="h3" />

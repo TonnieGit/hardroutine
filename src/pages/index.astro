@@ -21,7 +21,12 @@ import { site } from '../lib/site';
   <section class="hero">
     <ImageSlot
       slotName="HERO-4WD-DUST-DUSK"
+      basePath="/img/hero-4wd-camp-dusk"
+      width={1376}
+      height={768}
       alt=""
+      loading="eager"
+      fetchpriority="high"
       minHeight="100svh"
       fullBleed
       class="hero-image"
@@ -92,6 +97,9 @@ import { site } from '../lib/site';
   <!-- 03 — LIFESTYLE INTERRUPTION -->
   <ImageSlot
     slotName="LIFESTYLE-SWAG-PACKUP"
+    basePath="/img/lifestyle-swag-packup"
+    width={1376}
+    height={768}
     alt=""
     ratio="21 / 9"
     fullBleed
@@ -112,8 +120,10 @@ import { site } from '../lib/site';
         descriptor="SWAG TRANSIT BAGS / 900 · 1200 · 1400 MM"
         href="/gear/swag-bags/"
         linkLabel="Swag bags →"
-        imageBasePath="/img/roll-1200-4x3"
+        imageBasePath="/img/roll-feature-loadup"
         imageAlt=""
+        imageWidth={1200}
+        imageHeight={896}
         variant="image-left"
       >
         Oversized on purpose. Sized for a wet swag rolled badly, not a dry one
@@ -126,8 +136,10 @@ import { site } from '../lib/site';
         descriptor="DUFFLE BAGS / 40 · 70 · 100 L"
         href="/gear/duffle-bags/"
         linkLabel="Duffle bags →"
-        imageBasePath="/img/haul-70-4x3"
+        imageBasePath="/img/haul-feature-loadup"
         imageAlt=""
+        imageWidth={1200}
+        imageHeight={896}
         variant="image-right"
       >
         A touring duffle in coated technical nylon, not cotton canvas.
@@ -140,8 +152,10 @@ import { site } from '../lib/site';
         descriptor="REAR WHEEL BAGS / 60 · 90 L"
         href="/gear/rear-wheel-bags/"
         linkLabel="Rear wheel bags →"
-        imageBasePath="/img/dump-60-4x3"
+        imageBasePath="/img/dump-feature-spare"
         imageAlt=""
+        imageWidth={1376}
+        imageHeight={768}
         variant="image-left"
       >
         For everything you don't want inside the vehicle. Wet towels, muddy
@@ -156,6 +170,9 @@ import { site } from '../lib/site';
     <div class="wrap fabric-grid">
       <ImageSlot
         slotName="DETAIL-FABRIC-MACRO"
+        basePath="/img/detail-fabric-macro"
+        width={1200}
+        height={896}
         alt=""
         ratio="1 / 1"
         class="fabric-image"

@@ -16,6 +16,8 @@ interface Props {
   ratio?: string; // CSS aspect-ratio value, e.g. "16 / 9"
   minHeight?: string; // overrides ratio-based sizing, e.g. "100svh"
   fullBleed?: boolean;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
   class?: string;
 }
 
@@ -28,6 +30,8 @@ const {
   ratio = '16 / 9',
   minHeight,
   fullBleed = false,
+  loading = 'lazy',
+  fetchpriority = 'auto',
   class: className,
 } = Astro.props;
 ---
@@ -36,7 +40,15 @@ const {
   style={minHeight ? `min-height:${minHeight}` : `aspect-ratio:${ratio}`}
 >
   {basePath ? (
-    <ResponsiveImage basePath={basePath} width={width} height={height} alt={alt} class="image-slot-media" />
+    <ResponsiveImage
+      basePath={basePath}
+      width={width}
+      height={height}
+      alt={alt}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      class="image-slot-media"
+    />
   ) : (
     <div class="image-slot-placeholder" role={alt ? 'img' : undefined} aria-label={alt || undefined}>
       <span class="mono-label image-slot-name">{slotName}</span>
@@ -91,6 +103,20 @@ const {
     flex-direction: column;
     justify-content: flex-end;
     padding: var(--space-4) var(--space-3);
+  }
+  /* Scrim behind overlay text only — text always sits at the bottom edge,
+     so only that band needs contrast help against a real photo. */
+  .image-slot-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgba(10, 11, 10, 0.8) 0%,
+      rgba(10, 11, 10, 0.55) 45%,
+      rgba(10, 11, 10, 0.3) 100%
+    );
   }
   @media (min-width: 640px) {
     .image-slot-overlay { padding: var(--space-5) var(--space-4); }
