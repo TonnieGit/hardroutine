@@ -1,0 +1,21 @@
+---
+// Layout wrapper for PromoTile — responsive tile grid, adapts to however
+// many tiles are passed rather than assuming a fixed count of 3.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+<div class:list={['promo-grid', className]}>
+  <slot />
+</div>
+
+<style>
+  .promo-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .promo-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  }
+</style>

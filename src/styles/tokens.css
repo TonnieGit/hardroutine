@@ -3,6 +3,10 @@
   --bitumen:    #0A0B0A;  /* page background — near-black */
   --char:       #1A1F1C;  /* raised surface */
   --char-2:     #232924;  /* second surface */
+  --stone:      #26241F;  /* alternate section ground — warm dark gravel, lighter
+                              than bitumen but still dark; breaks up long runs of
+                              black without going light/grey */
+  --stone-2:    #322E27;  /* raised surface on stone (tiles, cards) */
   --line:       #2F3630;  /* borders, rules */
 
   /* Ink */

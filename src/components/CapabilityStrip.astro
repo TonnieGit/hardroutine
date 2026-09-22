@@ -1,0 +1,52 @@
+---
+// Compact trust/capability band — the equipment-documentation equivalent
+// of a generic icon-reassurance strip. Numbered mono marks instead of
+// icon badges, per hard-routine-design-brief.md §38 (military rule).
+interface Item {
+  label: string;
+  copy: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+<div class="capability-strip">
+  {items.map((item, i) => (
+    <div class="capability-item">
+      <p class="mono-label capability-index">{String(i + 1).padStart(2, '0')}</p>
+      <p class="capability-label">{item.label}</p>
+      <p class="capability-copy">{item.copy}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .capability-strip {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 720px) {
+    .capability-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+  .capability-item {
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
+  }
+  .capability-index { color: var(--brass); }
+  .capability-label {
+    margin-top: var(--space-1);
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(17px, 1.7vw, 21px);
+    color: var(--bone);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+  .capability-copy {
+    margin-top: 0.4em;
+    font-size: var(--size-small);
+    color: var(--bone-muted);
+  }
+</style>

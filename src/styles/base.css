@@ -124,6 +124,12 @@ section, .section {
   padding-block: var(--space-5);
 }
 
+/* Ground alternation between major sections — see
+   hard-routine-design-brief.md §8. .section-stone breaks up long runs of
+   black without introducing a light/grey ground. */
+.section-black { background: var(--bitumen); }
+.section-stone { background: var(--stone); }
+
 /* Viewport-breakout for full-bleed imagery/sections inside a centred layout */
 .full-bleed {
   width: 100vw;

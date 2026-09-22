@@ -7,6 +7,9 @@ import MegaHeading from '../components/MegaHeading.astro';
 import ImageSlot from '../components/ImageSlot.astro';
 import TechnicalCallout from '../components/TechnicalCallout.astro';
 import RangeFeature from '../components/RangeFeature.astro';
+import CapabilityStrip from '../components/CapabilityStrip.astro';
+import PromoGrid from '../components/PromoGrid.astro';
+import PromoTile from '../components/PromoTile.astro';
 import { organizationSchema, websiteSchema } from '../lib/schema';
 import { site } from '../lib/site';
 ---
@@ -51,6 +54,20 @@ import { site } from '../lib/site';
         </div>
       </div>
     </ImageSlot>
+  </section>
+
+  <!-- 01B — CAPABILITY STRIP (stone, breaks the black straight off the hero) -->
+  <section class="section-stone capability">
+    <div class="wrap">
+      <CapabilityStrip
+        items={[
+          { label: 'Australian designed', copy: 'Built around fifteen years of local forum failures, not a spec sheet.' },
+          { label: 'Vented, not sealed', copy: 'Mesh vent panels so a wet swag dries instead of stewing.' },
+          { label: 'Coated nylon, not canvas', copy: "Lighter, won't mildew, doesn't shrink." },
+          { label: 'YKK #10 Vislon', copy: 'A coarse zip that sheds grit instead of jamming on it.' },
+        ]}
+      />
+    </div>
   </section>
 
   <!-- 02 — BRAND STATEMENT / THE PROBLEM (black, asymmetric editorial) -->
@@ -213,7 +230,7 @@ import { site } from '../lib/site';
     </div>
   </ImageSlot>
 
-  <section class="section-black fabric-detail">
+  <section class="section-stone fabric-detail">
     <div class="wrap fabric-detail-grid">
       <dl class="fabric-specs">
         <div><dt>01 / SHELL</dt><dd>500D PU-coated nylon oxford</dd></div>
@@ -234,6 +251,36 @@ import { site } from '../lib/site';
         </p>
         <p><a href="/the-fabric/">How we chose it →</a></p>
       </div>
+    </div>
+  </section>
+
+  <!-- 06B — EXPLORE MORE (promo tile grid, black) -->
+  <section class="section-black explore">
+    <div class="wrap">
+      <SectionLabel label="FIELD" index="06" />
+      <h2 class="explore-heading">Keep reading</h2>
+      <PromoGrid class="explore-grid">
+        <PromoTile
+          tag="MATERIAL"
+          heading="The Fabric"
+          href="/the-fabric/"
+          linkLabel="See the fabric"
+          imageBasePath="/img/detail-fabric-macro"
+        />
+        <PromoTile
+          tag="FIELD NOTES"
+          heading="Why Dust Kills Zips"
+          href="/field-notes/dust-and-zips/"
+          linkLabel="Read the field note"
+        />
+        <PromoTile
+          tag="LAUNCH"
+          heading="Register Interest"
+          href="/register/"
+          linkLabel="Register your interest"
+          imageBasePath="/img/lifestyle-swag-packup"
+        />
+      </PromoGrid>
     </div>
   </section>
 
@@ -305,6 +352,9 @@ import { site } from '../lib/site';
     gap: var(--space-2);
     margin-top: var(--space-4);
   }
+
+  /* 01B — Capability strip */
+  .capability { padding-block: var(--space-5); }
 
   /* 02 — Brand statement */
   .problem { padding-block: var(--space-7); }
@@ -411,6 +461,13 @@ import { site } from '../lib/site';
     font-size: var(--size-body);
     color: var(--bone);
   }
+
+  /* 06B — Explore more */
+  .explore { padding-block: var(--space-6); }
+  .explore-heading { margin-top: var(--space-2); }
+  /* :global — .explore-grid is applied to PromoGrid's own root element,
+     which doesn't carry this page's scope attribute. */
+  :global(.explore-grid) { margin-top: var(--space-4); }
 
   /* 07 — Final CTA */
   .register-block-inner {

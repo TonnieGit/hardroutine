@@ -1,0 +1,101 @@
+---
+// Boxed secondary-navigation tile — angled brass corner tag, image with the
+// shared ImageSlot scrim, heading + link overlaid at the bottom edge. For
+// "explore next" links (fabric, field notes, register), not the primary
+// product range, which stays full-bleed via RangeFeature.
+//
+// imageBasePath is optional — per hard-routine-design-brief.md §41, when no
+// suitable photo exists this falls back to a flat stone card rather than
+// forcing in a repeated or unsuitable image (e.g. an OG social-share card,
+// which carries its own baked-in title text that collides with this
+// component's own heading).
+import ImageSlot from './ImageSlot.astro';
+
+interface Props {
+  tag: string; // "MATERIAL"
+  heading: string; // "The Fabric"
+  href: string;
+  linkLabel: string; // "See the fabric"
+  imageBasePath?: string;
+  imageAlt?: string;
+  ratio?: string;
+}
+
+const {
+  tag,
+  heading,
+  href,
+  linkLabel,
+  imageBasePath,
+  imageAlt = '',
+  ratio = '4 / 3',
+} = Astro.props;
+---
+<a href={href} class="promo-tile">
+  {imageBasePath ? (
+    <ImageSlot
+      slotName={`PROMO-${tag}`}
+      basePath={imageBasePath}
+      alt={imageAlt}
+      ratio={ratio}
+    >
+      <span class="promo-tile-tag mono-label">{tag}</span>
+      <span class="promo-tile-body">
+        <span class="promo-tile-heading">{heading}</span>
+        <span class="promo-tile-link">{linkLabel} →</span>
+      </span>
+    </ImageSlot>
+  ) : (
+    <div class="promo-tile-flat" style={`aspect-ratio:${ratio}`}>
+      <span class="promo-tile-tag mono-label">{tag}</span>
+      <span class="promo-tile-body">
+        <span class="promo-tile-heading">{heading}</span>
+        <span class="promo-tile-link">{linkLabel} →</span>
+      </span>
+    </div>
+  )}
+</a>
+
+<style>
+  .promo-tile { display: block; color: inherit; text-decoration: none; }
+  .promo-tile-flat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--stone-2);
+    padding: var(--space-4) var(--space-3);
+  }
+  .promo-tile-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--brass);
+    color: var(--bitumen);
+    padding: 0.6em 1.4em 0.6em 1.8em;
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .promo-tile-body {
+    display: block;
+  }
+  .promo-tile-heading {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--bone);
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1;
+  }
+  .promo-tile-link {
+    display: inline-block;
+    margin-top: 0.6em;
+    font-family: var(--font-mono);
+    font-size: var(--size-small);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .promo-tile:hover .promo-tile-heading { color: var(--brass); }
+  .promo-tile:hover .promo-tile-link { color: var(--bone); }
+</style>

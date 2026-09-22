@@ -5,6 +5,8 @@ import SectionLabel from '../../components/SectionLabel.astro';
 import MegaHeading from '../../components/MegaHeading.astro';
 import ImageSlot from '../../components/ImageSlot.astro';
 import RangeFeature from '../../components/RangeFeature.astro';
+import PromoGrid from '../../components/PromoGrid.astro';
+import PromoTile from '../../components/PromoTile.astro';
 import { site } from '../../lib/site';
 ---
 <BaseLayout
@@ -86,6 +88,35 @@ import { site } from '../../lib/site';
     Welded-liner spare wheel bags for the gear you don't want inside the
     vehicle. Real drainage, webbing that holds.
   </RangeFeature>
+
+  <section class="section-stone explore">
+    <div class="wrap">
+      <SectionLabel label="FIELD" index="01" />
+      <h2 class="explore-heading">Keep reading</h2>
+      <PromoGrid class="explore-grid">
+        <PromoTile
+          tag="MATERIAL"
+          heading="The Fabric"
+          href="/the-fabric/"
+          linkLabel="See the fabric"
+          imageBasePath="/img/detail-fabric-macro"
+        />
+        <PromoTile
+          tag="FIELD NOTES"
+          heading="Why Swag Bags Fail"
+          href="/field-notes/why-swag-bags-fail/"
+          linkLabel="Read the field notes"
+        />
+        <PromoTile
+          tag="ABOUT"
+          heading="About Hard Routine"
+          href="/about/"
+          linkLabel="How we got here"
+          imageBasePath="/img/hero-4wd-camp-dusk"
+        />
+      </PromoGrid>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -95,4 +126,10 @@ import { site } from '../../lib/site';
     color: var(--bone-muted);
   }
   .gear-intro h2 { margin-top: var(--space-6); }
+
+  .explore { padding-block: var(--space-6); }
+  .explore-heading { margin-top: var(--space-2); }
+  /* :global — .explore-grid is applied to PromoGrid's own root element,
+     which doesn't carry this page's scope attribute. */
+  :global(.explore-grid) { margin-top: var(--space-4); }
 </style>

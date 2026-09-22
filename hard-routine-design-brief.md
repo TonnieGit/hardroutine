@@ -305,6 +305,8 @@ Suggested foundation:
 --bitumen: #0A0B0A;
 --charcoal: #141614;
 --charcoal-2: #1C1F1C;
+--stone: #26241F;   /* alternate ground — dark warm gravel */
+--stone-2: #322E27; /* raised surface on stone */
 
 --bone: #E8E4DA;
 --bone-muted: #BDB9AE;
@@ -322,7 +324,13 @@ Do **not** use every colour everywhere.
 
 The site should visually live mostly in:
 
-**black / charcoal / bone**
+**black / stone / bone**
+
+Bitumen (near-black) is the default ground for image-driven and monumental-type
+sections. Stone is a second, warmer, still-dark ground used to break up long
+runs of black between those moments — see §9 — without lightening the site
+toward grey or white. A page should alternate between the two grounds, not
+sit on either exclusively.
 
 with occasional:
 
@@ -335,6 +343,18 @@ and very limited:
 The orange should be an action colour.
 
 It should not become the brand colour.
+
+## A note on external references
+
+RealTruck Australia (realtruck.com.au) is a useful reference for *layout
+rhythm* — its alternating light/dark section grounds, boxed promo-tile grid
+with an angled corner tag, and compact capability/trust strip are patterns
+worth borrowing (see §21 SECTION 06B and the `PromoTile`/`PromoGrid`/
+`CapabilityStrip` components in §48). Its actual palette (white/light-grey
+grounds, saturated yellow as the dominant colour, bright daylight photography)
+is **not** the reference — Hard Routine stays dark, using stone rather than
+white/grey for the "light" side of the alternation, and keeps brass/flare
+rationed per the rule above rather than using an accent colour everywhere.
 
 ---
 
@@ -756,6 +776,18 @@ Primary CTA:
 
 ---
 
+## SECTION 01B — CAPABILITY STRIP
+
+Stone background — the first ground alternation off the hero.
+
+A compact `CapabilityStrip`: four short, numbered technical claims already
+established elsewhere in the copy (vented not sealed, coated nylon not
+canvas, etc.), not new marketing claims. Functions as the trust band a
+RealTruck-style icon strip would occupy, in the equipment-documentation
+voice instead of icon badges.
+
+---
+
 ## SECTION 02 — BRAND STATEMENT
 
 Black background.
@@ -906,6 +938,18 @@ Then technical information.
 CTA:
 
 `SEE THE FABRIC →`
+
+---
+
+## SECTION 06B — EXPLORE MORE
+
+Black background — the second ground alternation, after the stone fabric
+detail section.
+
+A `PromoGrid` of `PromoTile`s (material, a field note, register interest) —
+boxed images with an angled brass corner tag and overlaid heading/link,
+adapted from RealTruck's promo-tile pattern (see §8). This is secondary
+wayfinding, not the primary product range, which stays full-bleed.
 
 ---
 
@@ -1784,6 +1828,13 @@ Build reusable primitives for:
 - `RegisterCTA`
 - `ProductGallery`
 - `StickyProductInfo`
+- `RangeFeature` — full-bleed product/range feature (image + overlaid type),
+  replaces boxed image/text split layouts
+- `PromoTile` / `PromoGrid` — boxed secondary-navigation tile with an angled
+  brass corner tag, for "explore next" links (material, field notes,
+  register) — not for the primary product range, which stays full-bleed
+- `CapabilityStrip` — compact numbered trust/capability band, the
+  equipment-documentation equivalent of a generic icon-reassurance strip
 
 The components should accept layout variants rather than forcing every section into the same structure.
 
